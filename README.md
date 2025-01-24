@@ -25,6 +25,7 @@
 
 ### Reference Table
 
-|Business Logic| Application | Technology  |
----------------|-------------|-------------|
+|Business Logic| Data Source | Application Use | Technology Use  |
+---------------|-------------|-----------------|-----------------|
 |Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.|||
+|To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.|||
