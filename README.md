@@ -31,4 +31,4 @@
 |2|To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.|||
 |3|Implementation of rule based approach upon transaction initialisation|||
 |4|Implementation of ML based approach upon transaction initialisation|||
-|5|Notificiation |||
+|5|Notificiations | Data created upon No.2 & 3 activities initiate ||
