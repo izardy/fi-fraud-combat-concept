@@ -25,6 +25,6 @@
 
 ### Reference Table
 
-|business|test
----------|----
-dsda     |
+|Business Logic| Application | Technology  |
+---------------|-------------|-------------|
+|Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.|||
