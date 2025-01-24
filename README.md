@@ -26,7 +26,7 @@
 ### Reference Table
 
 | No. |Business Logic| Data Source | Application Use | Technology Use  |
----------------|-------------|-----------------|-----------------|
+--|------------|-------------|-----------------|-----------------|
 |1|Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.|||
 |2|To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.|||
 |3|Implementation of rule based approach upon transaction initialisation|||
