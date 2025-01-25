@@ -23,12 +23,12 @@
     - Issue 2 & 3
         - *To establish a repository where scam/fraud/mule account 
 
-### Reference Table
+### System Architecture : TOGAF BDAT Approach
 
 | No. |Business Logic| Data Source | Application Use | Technology Use  |
 --|------------|-------------|-----------------|-----------------|
-|1|Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.| CBS | |
-|2|To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.|CBS||
-|3|Implementation of rule based approach upon transaction initialisation. | CBS| Python3 | Linux|
-|4|Implementation of ML based approach upon transaction initialisation. | CBS| Python3, Scikit-Learn | Linux |
-|5|Notifications | Data created upon No.2 & 3 activities initiate | Python3, Selenium, Ollama, Whatsapp Web| Linux, Nvidia Cuda |
+|1|Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.| CBS | | Linux Server |
+|2|To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.|CBS| | Linux Server |
+|3|Implementation of rule based approach upon transaction initialisation. | CBS| Python3 | Linux Server|
+|4|Implementation of ML based approach upon transaction initialisation. | CBS| Python3, Scikit-Learn | Linux Server |
+|5|Notifications | Data created upon No.2 & 3 activities initiate | Python3, Selenium, Ollama, Whatsapp Web| Linux Server, Nvidia Cuda |
