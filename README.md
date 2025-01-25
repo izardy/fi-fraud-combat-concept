@@ -9,7 +9,7 @@
 
 ### Propose Conceptual Solution
 - Based on the issues highlighted, we want to built a sandbox to demonstrate how the above might be able to counter.
-    - Issue 1
+    - Issue 1 & 2
         - *On situation where mule account about to be created*
             - [ ] *Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.*
             - [ ] *To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call*
@@ -20,15 +20,15 @@
             - [ ] *Notification at customer phone number*
             - [ ] *Notification to bank on this alert*
 
-    - Issue 2
+    - Issue 2 & 3
         - *To establish a repository where scam/fraud/mule account 
 
 ### Reference Table
 
 | No. |Business Logic| Data Source | Application Use | Technology Use  |
 --|------------|-------------|-----------------|-----------------|
-|1|Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.|||
+|1|Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.| CBS | |
 |2|To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.|||
-|3|Implementation of rule based approach upon transaction initialisation|||
-|4|Implementation of ML based approach upon transaction initialisation|||
-|5|Notificiations | Data created upon No.2 & 3 activities initiate ||
+|3|Implementation of rule based approach upon transaction initialisation| Python3 | Linux|
+|4|Implementation of ML based approach upon transaction initialisation|Python3, Scikit-Learn | Linux |
+|5|Notifications | Data created upon No.2 & 3 activities initiate | Python3, Selenium, Ollama, Whatsapp Web| Linux, Nvidia Cuda |
