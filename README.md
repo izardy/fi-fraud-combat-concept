@@ -32,4 +32,4 @@
 |3|Implementation of rule based approach upon transaction initialisation. | CBS| | Linux Server, Python3, Bash, Cron|
 |4|Implementation of ML based approach upon transaction initialisation. | CBS| AWS SageMaker  | Scikit-Learn, Linux Server, Python3, Bash, Cron |
 |5|Notifications | Data created upon No.2 & 3 activities initiate | Whatsapp Web| Selenium, Ollama, Linux Server, Nvidia Cuda |
-|6|Automated scrape scam/fraud/mule acount from various sources & publish data in a platform, enable API and new data additional |
+|6|Automated scrape scam/fraud/mule acount from various sources & publish data in a platform, enable API and new data additional | Internal & Open source data| OSINT Platform | Linux Server, Python3, Bash, Cron, Solr|
