@@ -8,7 +8,7 @@
     - Issue 4 : No direct information sharing real-time event platform from other FI. 
 
 ### Propose Conceptual Solution
-- Based on the issues highlighted, we want to built a sandbox to demonstrate how the above might be able to counter.
+- Based on the issues highlighted and performed gap analysis, we want to built a sandbox to demonstrate how the above might be able to counter.
     - Issue 1 & 2
         - *On situation where mule account about to be created*
             - [ ] *Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.*
@@ -21,7 +21,10 @@
             - [ ] *Notification to bank on this alert*
 
     - Issue 2 & 3
-        - *To establish a repository where scam/fraud/mule account 
+        - *To establish a repository where scam/fraud/mule account*
+            - [ ] *Visualized data of the above information*
+            - [ ] *Enablement for additional data input from external contributors*
+            - [ ] *Enablement of API call for the data*
 
 ### System Architecture : TOGAF BDAT Approach
 
