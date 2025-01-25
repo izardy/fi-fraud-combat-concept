@@ -29,6 +29,6 @@
 --|------------|-------------|-----------------|-----------------|
 |1|Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.| CBS | | Linux Server, Python3, Bash, Cron |
 |2|To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.|CBS| | Linux Server, Python3, Bash, Cron |
-|3|Implementation of rule based approach upon transaction initialisation. | CBS|  Linux Server, Python3, Bash, Cron|
+|3|Implementation of rule based approach upon transaction initialisation. | CBS| | Linux Server, Python3, Bash, Cron|
 |4|Implementation of ML based approach upon transaction initialisation. | CBS|  | Scikit-Learn, Linux Server, Python3, Bash, Cron |
 |5|Notifications | Data created upon No.2 & 3 activities initiate | Whatsapp Web| Selenium, Ollama, Linux Server, Nvidia Cuda |
