@@ -1,0 +1,94 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+      <a class="sidebar-brand brand-logo" href="index.html"><img src="/static/img/P1.svg" style="width:20%;height:20%" alt="logo" /></a>
+      <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="/static/img/P1.svg" style="width:100%;height:100%" alt="logo" /></a>
+    </div>
+    <ul class="nav">
+      <li class="nav-item profile">
+        <div class="profile-desc">
+          <div class="profile-pic">
+            <div class="count-indicator">
+              <img class="img-xs rounded-circle " src="/static/img/faces/face15.jpg" alt="">
+              <span class="count bg-success"></span>
+            </div>
+            <div class="profile-name">
+              <h5 class="mb-0 font-weight-normal">
+                {{ (g.user['username']).capitalize() }}
+              </h5>
+              <span>
+                {{ g.user['username'] }}
+              </span>
+            </div>
+          </div>
+          <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+          <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+            <a href="{{ url_for('auth.logout') }}" class="dropdown-item preview-item">
+              <div class="preview-thumbnail">
+                <div class="preview-icon bg-dark rounded-circle">
+                  <i class="mdi mdi-logout text-danger"></i>
+                </div>
+              </div>
+              <div class="preview-item-content">
+                <p class="preview-subject ellipsis mb-1 text-small">Logout</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item nav-category">
+        <span class="nav-link">Navigation</span>
+      </li>
+      
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#transaction" aria-expanded="false" aria-controls="transaction">
+          <span class="menu-icon">
+            <i class="mdi mdi-cash"></i>
+          </span>
+          <span class="menu-title">Transaction</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="transaction">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">Transfer</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Pay</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Reload</a></li>
+          </ul>
+        </div>
+      </li>
+      
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#scam-info" aria-expanded="false" aria-controls="scam-info">
+          <span class="menu-icon">
+            <i class="mdi mdi-food"></i>
+          </span>
+          <span class="menu-title">Scam Info</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="scam-info">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">Find Scammer</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Add Scammer</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#manage" aria-expanded="false" aria-controls="manage">
+          <span class="menu-icon">
+            <i class="mdi mdi-food"></i>
+          </span>
+          <span class="menu-title">Manage</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="manage">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Profile</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">Password</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Security Question</a></li>
+          </ul>
+        </div>
+      </li>
+
+    </ul>
+  </nav>

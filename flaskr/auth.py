@@ -18,56 +18,66 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 ####################################################################################
 
-@bp.route('/register', methods=('GET', 'POST'))
+@bp.route('/register', methods=('GET', 'POST'))  # Changed endpoint
 def register():
     if request.method == 'POST':
-        firstname = request.form['firstname']
-        lastname = request.form['lastname']
-        gender = 'male'
-        dob = request.form['dob']
-        username = request.form['username']
-        password = request.form['password']
-        worker_id = '-'  # assuming this should be a string
-        locationSelect = '-'  # assuming this should be a string
-        divisionSelect = '-'  # assuming this should be a string
-        departmentSelect = '-'  # assuming this should be a string
+        # Get form data from CORRECT fields
+        email = request.form['register-username']
+        password = request.form['register-password']
+        confirm_password = request.form['confirm-register-password']
         
-        address1 = '-' 
-        address2 = '-' 
-        address3 = '-' 
+        # Add password confirmation check
+        if password != confirm_password:
+            error = 'Passwords do not match'
+            flash(error)
+            return redirect(url_for('auth.register'))
+
+        # Set default values for other fields
+        defaults = {
+            'username': email,  # Using email as username
+            'firstname': '-',
+            'lastname': '-',
+            'gender': '-',
+            'dob': '-',
+            'address1': '-',
+            'address2': '-',
+            'postcode': '-',
+            'area': '-',
+            'state': '-'
+        }
 
         db = get_db()
         error = None
 
-        if not firstname:
-            error = 'First Name is required.'
-        elif not lastname:
-            error = 'Last Name is required.'
-        elif not gender:
-            error = 'Gender is required.'
-        elif not dob:
-            error = 'Date of birth is required.'
-        elif not username:
-            error = 'Username is required.'
+        if not email:
+            error = 'Email is required.'
         elif not password:
             error = 'Password is required.'
 
         if error is None:
             try:
+                # Corrected SQL with proper columns/values
                 db.execute(
-                    "INSERT INTO user (username, password, firstname, lastname, gender, dob, worker_id, locationSelect, divisionSelect, departmentSelect, address1, address2, address3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    (username, generate_password_hash(password), firstname, lastname, gender, dob, worker_id, locationSelect, divisionSelect, departmentSelect, address1, address2, address3),
+                    """INSERT INTO user 
+                    (username, password, firstname, lastname, gender, dob,
+                     address1, address2, postcode, area, state) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (email, generate_password_hash(password),
+                     defaults['firstname'], defaults['lastname'], defaults['gender'], defaults['dob'],
+                     defaults['address1'], defaults['address2'], defaults['postcode'],
+                     defaults['area'], defaults['state'])
                 )
                 db.commit()
             except db.IntegrityError:
-                error = f"User {username} is already registered."
+                error = f"Email {email} is already registered."
             else:
                 flash('Registration successful. Please log in.')
                 return redirect(url_for('auth.login'))
 
         flash(error)
+        return redirect(url_for('auth.register'))
 
-    return render_template('auth/register.html')
+    return render_template('auth/login.html')
 
 
 ####################################################################################
@@ -75,12 +85,14 @@ def register():
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        # Match the form field names from your HTML
+        email = request.form['login-username']  # Changed from username
+        password = request.form['login-password']
+        
         db = get_db()
         error = None
         user = db.execute(
-            'SELECT * FROM user WHERE username = ?', (username,)
+            'SELECT * FROM user WHERE username = ?', (email,)  # Changed to email
         ).fetchone()
 
         if user is None:
@@ -110,110 +122,6 @@ def load_logged_in_user():
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
                 
-#################################################################################### [SHOW USER INFO]
-
-@bp.route('/user_view')
-def list_info():
-    db = get_db()
-    user = db.execute(
-        'SELECT id, username, firstname, lastname, gender,dob, worker_id,locationSelect, divisionSelect, departmentSelect, address1, address2, address3'
-        ' FROM user'
-        ' WHERE username = ?',(g.user['username'],)
-        #' ORDER BY id ASC'
-    ).fetchone()
-    
-    # Define the two dates
-    date1_str = user['dob']
-    date2_str = datetime.now().strftime("%Y-%m-%d")  # Get today's date
-    
-    # Convert strings to datetime objects
-    date1 = datetime.strptime(date1_str, "%Y-%m-%d")
-    date2 = datetime.strptime(date2_str, "%Y-%m-%d")
-    
-    # Calculate the age
-    age = int(abs(date2 - date1).days / 365.25)
-    
-    # transactions
-    transactions = db.execute('SELECT * FROM transactions WHERE account_id = ? ORDER BY id DESC LIMIT 1',(g.user['id'],)).fetchone()
-    
-    return render_template('auth/user_view.html',user=user ,age=age, transactions=transactions)
-
-
-####################################################################################
-
-@bp.route('/<int:id>/user_update', methods=('GET', 'POST'))
-def user_update(id):
-    user = get_user(id)
-    if request.method == 'POST':
-        old_password = request.form['old_password']
-        new_password = request.form['new_password']
-        
-        locationSelect = request.form['locationSelect']
-        divisionSelect = request.form['divisionSelect']
-        departmentSelect = request.form['departmentSelect']
-        
-        address1 = request.form['stateSelect']
-        address2 = request.form['districtSelect']
-        address3 = request.form['areaSelect']
-        
-        
-        error = None
-
-        if not old_password:
-            error = 'Password is required.'
-        
-        if not check_password_hash(g.user['password'], old_password):
-            error = 'Incorrect password.'
-
-        if not new_password:
-            error = 'Password is required.'
-        
-        if not locationSelect:
-            error = 'Location is required.'
-
-        if not divisionSelect:
-            error = 'Division is required.'
-        
-        if not departmentSelect:
-            error = 'Department name is required.'
-        
-        if not address1:
-            error = 'Address 1 is required.'
-
-        if not address2:
-            error = 'Address 2 is required.'
-        
-        if not address3:
-            error = 'Address3 is required.'
-
-        if error is not None:
-            flash(error)
-
-        else:
-            db = get_db()
-            db.execute(
-                'UPDATE user SET password = ?, locationSelect = ?, divisionSelect = ?, departmentSelect = ?, address1 = ?, address2 = ?, address3 = ?'
-                ' WHERE id = ?',
-                (generate_password_hash(new_password), locationSelect, divisionSelect, departmentSelect, address1, address2, address3, id)
-            )
-            db.commit()
-            return redirect(url_for('index'))
-        
-    # Define the two dates
-    date1_str = user['dob']
-    date2_str = datetime.now().strftime("%Y-%m-%d")  # Get today's date
-    
-    # Convert strings to datetime objects
-    date1 = datetime.strptime(date1_str, "%Y-%m-%d")
-    date2 = datetime.strptime(date2_str, "%Y-%m-%d")
-    
-    # Calculate the age
-    age = int(abs(date2 - date1).days / 365.25)
-
-    return render_template('auth/user_update.html', user=user, age=age)
-
-#################################################################################### [SHOW USER TRANSACTION]
-
 ####################################################################################
 
 @bp.route('/logout')

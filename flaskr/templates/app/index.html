@@ -1,100 +1,286 @@
-{% extends "base.html" %}
+{% extends "/layouts/base.html" %}
 
 {% block header %}
-  <h1>{% block title %}Open Source Intelligence{% endblock %}</h1>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<h1>{% block title %}Index{% endblock %}</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 {% endblock %}
 
 {% block content %}
+<body class="text-center" style="overflow:hidden;background">
 
-<body class="text-center" style="overflow:hidden;background: linear-gradient(to bottom right, #000000 0%, #91063a 100%)">
+    <div class="container aligned-middle mt-5"  scrolling="yes" frameborder="0" style=" width: 100%; height: calc(101vh - 66px);  overflow: auto; ">
 
-        <div class="container aligned-middle mt-5"  scrolling="yes" frameborder="0" style=" width: 100%; height: calc(101vh - 66px);  overflow: auto; ">
+        <div class="row">
 
-            <div class="row">
-
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.list_tasks') }}"><img src="{{ url_for('static', filename='img/bulb.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>AI Driven Research</strong></p>
-                    </div>
-                </div>
-
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.documentChatbot') }}"><img src="{{ url_for('static', filename='img/ai.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Document Chatbot</strong></p>
-                    </div>
-                </div>
-                
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.news' )}}" ><img src="{{ url_for('static', filename='img/news-analysis.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>News</strong></p>
-                    </div>
-                </div>
-                
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.company' )}}"><img src="{{ url_for('static', filename='img/company-research.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Company</strong></p>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Account Balance</h5>
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted mb-1">Available Balance</span>
+                                <h2 class="mb-0 fw-bold text-dark">$25,420.65</h2>
+                            </div>
+                        </div>
                         
-                    </div>
-                </div>    
-
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.klse') }}"><img src="{{ url_for('static', filename='img/klse-research.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>KLSE</strong></p>
-                        
-                    </div>
-                </div>
-                
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.bnm') }}"><img src="{{ url_for('static', filename='img/bnm.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>BNM</strong></p>
-                        
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted mb-1">Account Type</span>
+                                <span class="mb-0 fw-bold text-dark">Savings Account</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted mb-1">Account Number</span>
+                                <span class="mb-0 fw-bold text-dark">****3456</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.sprm') }}"><img src="{{ url_for('static', filename='img/sprm.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>SPRM</strong></p>
-                        
-                    </div>
-                </div>
-
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.kehakiman') }}"><img src="{{ url_for('static', filename='img/kehakiman.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Kehakiman</strong></p>
-                        
-                    </div>
-                </div>
-                
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('dashboard.klse') }}"><img src="{{ url_for('static', filename='img/demographic.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Demographic</strong></p>
-                    </div>
-                </div>
-
-                <div class="col-md-2 mb-4">
-                    <div class="card" style="background-color: transparent">
-                        <a class="nav-item nav-link" href="{{ url_for('banana', filename='src/customize.html') }}" target="_blank"><img src="{{ url_for('static', filename='img/dashboard-maintenance.svg') }}" alt=""/></a></h2>
-                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><strong>Customization</strong></p>
-                    </div>
-                </div>
-            
             </div>
-                        
-            <div class="footer-copyright text-center py-3">
-                <p class="mt-5 mb-3 text-muted">&copy; DAC 2020 - 2024</p>
+               
+
+
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Monthly Spending</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <canvas id="monthlySpendingChart"></canvas>
+                        </div>
+                        <div class="text-end mt-2">
+                            <small class="text-muted">Current Balance: $25,420.65</small>
+                        </div>
+                    </div>
+                </div>
             </div>
             
+                           
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Category Spending</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <canvas id="categorySpendingChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+
+        
         </div>
+                    
+        
+    </div>
+
+    <!-- Add this script after including Chart.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('categorySpendingChart').getContext('2d');
+            
+            // Sample data for spending categories
+            const data = {
+                labels: [
+                    'Food & Dining',
+                    'Transportation',
+                    'Shopping',
+                    'Bills & Utilities',
+                    'Others'
+                ],
+                datasets: [{
+                    data: [30, 20, 25, 15, 10], // Percentages of spending
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#4BC0C0',
+                        '#9966FF'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+        
+            new Chart(ctx, {
+                type: 'pie',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            top: 0,    // Reduce top padding to move chart up
+                            bottom: 150 // Add bottom padding to create space below
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'left',
+                            labels: {
+                                boxWidth: 10,
+                                padding: 10,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    return `${label}: ${value}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <!-- Add this script section at the bottom of your body tag -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('monthlySpendingChart').getContext('2d');
+        
+        // Get last 6 months
+        const months = [];
+        for (let i = 5; i >= 0; i--) {
+            const d = new Date();
+            d.setMonth(d.getMonth() - i);
+            months.push(d.toLocaleString('default', { month: 'short' }));
+        }
+    
+        // Sample expenses data
+        const expenses = [3200.45, 2890.30, 3450.20, 2950.75, 3100.90, 2780.50];
+    
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Monthly Expenses',
+                    data: expenses,
+                    backgroundColor: 'rgba(62, 91, 132, 0.7)',
+                    borderColor: 'rgba(62, 91, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return '$ ' + context.parsed.y.toFixed(2);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$ ' + value;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+    </script>
+
+    <!-- Add this style section in your head tag -->
+    <style>
+    .card-body {
+        height: 250px;  /* Adjust this value as needed */
+    }
+    </style>
+
+    <style>
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+            background: white;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .text-primary {
+            color: #2563eb !important;
+        }
+        
+        .bg-light {
+            background-color: #f3f4f6 !important;
+        }
+        
+        .btn-primary {
+            background-color: #2563eb;
+            border-color: #2563eb;
+        }
+        
+        .btn-outline-primary {
+            color: #2563eb;
+            border-color: #2563eb;
+        }
+        
+        .text-muted {
+            color: #6b7280 !important;
+        }
+        
+        .fw-bold {
+            font-weight: 600;
+        }
+    </style>
+
+    <script>
+        // Your JavaScript functions
+        function updateBalance(balance) {
+            const balanceElement = document.querySelector('.card h2');
+            balanceElement.textContent = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD'
+            }).format(balance);
+        }
+
+        // Add any other JavaScript functions you need
+        function initializeAccount() {
+            // Example: Set initial values or fetch from backend
+            updateBalance(25420.65);
+            
+            // Add event listeners for buttons
+            document.querySelector('.btn-primary').addEventListener('click', function() {
+                // Handle transfer button click
+                console.log('Transfer clicked');
+            });
+            
+            document.querySelector('.btn-outline-primary').addEventListener('click', function() {
+                // Handle statement button click
+                console.log('Statement clicked');
+            });
+        }
+
+        // Call initialization when document is ready
+        document.addEventListener('DOMContentLoaded', initializeAccount);
+    </script>
 
 
 </body>
