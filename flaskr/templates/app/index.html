@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block header %}
+  <h1>{% block title %}Open Source Intelligence{% endblock %}</h1>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block content %}
+
+<body class="text-center" style="overflow:hidden;background: linear-gradient(to bottom right, #000000 0%, #91063a 100%)">
+
+        <div class="container aligned-middle mt-5"  scrolling="yes" frameborder="0" style=" width: 100%; height: calc(101vh - 66px);  overflow: auto; ">
+
+            <div class="row">
+
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.list_tasks') }}"><img src="{{ url_for('static', filename='img/bulb.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>AI Driven Research</strong></p>
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.documentChatbot') }}"><img src="{{ url_for('static', filename='img/ai.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Document Chatbot</strong></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.news' )}}" ><img src="{{ url_for('static', filename='img/news-analysis.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>News</strong></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.company' )}}"><img src="{{ url_for('static', filename='img/company-research.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Company</strong></p>
+                        
+                    </div>
+                </div>    
+
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.klse') }}"><img src="{{ url_for('static', filename='img/klse-research.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>KLSE</strong></p>
+                        
+                    </div>
+                </div>
+                
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.bnm') }}"><img src="{{ url_for('static', filename='img/bnm.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>BNM</strong></p>
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.sprm') }}"><img src="{{ url_for('static', filename='img/sprm.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>SPRM</strong></p>
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.kehakiman') }}"><img src="{{ url_for('static', filename='img/kehakiman.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Kehakiman</strong></p>
+                        
+                    </div>
+                </div>
+                
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('dashboard.klse') }}"><img src="{{ url_for('static', filename='img/demographic.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><strong>Demographic</strong></p>
+                    </div>
+                </div>
+
+                <div class="col-md-2 mb-4">
+                    <div class="card" style="background-color: transparent">
+                        <a class="nav-item nav-link" href="{{ url_for('banana', filename='src/customize.html') }}" target="_blank"><img src="{{ url_for('static', filename='img/dashboard-maintenance.svg') }}" alt=""/></a></h2>
+                            <p class="mb-0" style="color:#666769;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><strong>Customization</strong></p>
+                    </div>
+                </div>
+            
+            </div>
+                        
+            <div class="footer-copyright text-center py-3">
+                <p class="mt-5 mb-3 text-muted">&copy; DAC 2020 - 2024</p>
+            </div>
+            
+        </div>
+
+
+</body>
+{% endblock content %}

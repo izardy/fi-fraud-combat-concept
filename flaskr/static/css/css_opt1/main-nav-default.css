@@ -1,0 +1,11 @@
+.main-nav {
+    height: 100%;
+    width: 100px;
+    transition: all .1s linear;
+  }
+  .main-nav:hover {
+    width: calc(25% - 20px)
+  }
+  .main-nav:hover .nav-label {
+    display: inline-block;
+  }

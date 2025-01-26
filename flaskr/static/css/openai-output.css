@@ -1,0 +1,26 @@
+.openai-output {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .openai-output h1 {
+    font-size: 24px;
+    color: #007bff;
+  }
+
+  .openai-output h2 {
+    font-size: 20px;
+    color: #007bff;
+  }
+
+  .openai-output p {
+    margin-bottom: 10px;
+  }
+
+  .openai-output a {
+    color: #007bff;
+    text-decoration: underline;
+  }
