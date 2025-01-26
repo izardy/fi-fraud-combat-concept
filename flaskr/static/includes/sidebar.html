@@ -1,0 +1,172 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+      <a class="sidebar-brand brand-logo" href="index.html"><img src="/static/img/P1.svg" style="width:20%;height:20%" alt="logo" /></a>
+      <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="/static/img/P1.svg" style="width:100%;height:100%" alt="logo" /></a>
+    </div>
+    <ul class="nav">
+      <li class="nav-item profile">
+        <div class="profile-desc">
+          <div class="profile-pic">
+            <div class="count-indicator">
+              <img class="img-xs rounded-circle " src="/static/img/faces/face15.jpg" alt="">
+              <span class="count bg-success"></span>
+            </div>
+            <div class="profile-name">
+              <h5 class="mb-0 font-weight-normal">
+                {{ (g.user['username']).capitalize() }}
+              </h5>
+              <span>
+                {{ g.user['username'] }}
+              </span>
+            </div>
+          </div>
+          <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+          <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+            <a href="{{ url_for('auth.logout') }}" class="dropdown-item preview-item">
+              <div class="preview-thumbnail">
+                <div class="preview-icon bg-dark rounded-circle">
+                  <i class="mdi mdi-logout text-danger"></i>
+                </div>
+              </div>
+              <div class="preview-item-content">
+                <p class="preview-subject ellipsis mb-1 text-small">Logout</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item nav-category">
+        <span class="nav-link">Navigation</span>
+      </li>
+      
+      <li class="nav-item menu-items">
+        <a class="nav-link" href="index.html">
+          <span class="menu-icon">
+            <i class="mdi mdi-speedometer"></i>
+          </span>
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+      
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#food-supply" aria-expanded="false" aria-controls="food-supply">
+          <span class="menu-icon">
+            <i class="mdi mdi-food"></i>
+          </span>
+          <span class="menu-title">News</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="food-supply">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">,,,</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">,,,</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/typography.html">,,,</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#shelter" aria-expanded="false" aria-controls="shelter">
+          <span class="menu-icon">
+            <i class="mdi mdi-home"></i>
+          </span>
+          <span class="menu-title">BSKL</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="shelter">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">Financial Report</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Shareholders</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/typography.html">Directors</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/typography.html">Subsidiaries</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#health-security" aria-expanded="false" aria-controls="health-security">
+          <span class="menu-icon">
+            <i class="mdi mdi-hospital"></i>
+          </span>
+          <span class="menu-title">Jabatan Kehakiman</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="health-security">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">e-Lelong</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">e-Judgement</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/typography.html">LawNet</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/typography.html">Media Statement</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#transportation" aria-expanded="false" aria-controls="transportation">
+          <span class="menu-icon">
+            <i class="mdi mdi-bus"></i>
+          </span>
+          <span class="menu-title">SPRM</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="transportation">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">Data Pesalah Rasuah</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Individu Dikehendaki</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Garis Masa Kes</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Kenyataan Media</a></li>
+          </ul>
+        </div>
+      </li>
+
+
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#economy" aria-expanded="false" aria-controls="economy">
+          <span class="menu-icon">
+            <i class="mdi mdi-cash"></i>
+          </span>
+          <span class="menu-title">SPR</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="economy">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">Daftar Pemilih</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Daftar Pemilih Tambah</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#news" aria-expanded="false" aria-controls="news">
+          <span class="menu-icon">
+            <i class="mdi mdi-newspaper"></i>
+          </span>
+          <span class="menu-title">AG Chambers</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="news">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">Federal Legislations</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#community-affairs" aria-expanded="false" aria-controls="community-affairs">
+          <span class="menu-icon">
+            <i class="mdi mdi-nature-people"></i>
+          </span>
+          <span class="menu-title">Jabatan Audit Negara</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="community-affairs">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/buttons.html">Laporan Ketua Audit Negara</a></li>
+          </ul>
+        </div>
+      </li>
+
+
+    </ul>
+  </nav>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="/static/img/P1.svg" />
+
+    <title>
+        P1
+    </title>
+
+    <!--link rel="stylesheet" href="/static/css/css_opt2/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/static/css/css_opt2/vendor.bundle.base.css"-->
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+    <!-- Specific Plugin CSS goes HERE -->
+    {% block plugin_stylesheets %}{% endblock plugin_stylesheets %}
+
+    <link rel="stylesheet" href="/static/css/css_opt2/style.css">
+
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+  </head>
+  <body>
+    <div class="container-scroller">
+
+      {% include 'includes/sidebar.html' %}
+
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+
+        <!-- partial:partials/_navbar.html -->
+        {% include 'includes/navigation.html' %}
+
+        <!-- partial -->
+        <div class="main-panel">
+
+          {% block content %}{% endblock content %}  
+
+          {% include 'includes/footer.html' %}
+
+        </div>
+        <!-- main-panel ends -->
+
+      </div>
+      <!-- page-body-wrapper ends -->
+      
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/static/js/js_opt2/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+
+    <!-- Specific Plugin JS goes HERE  -->
+    {% block plugin_javascripts %}{% endblock plugin_javascripts %}
+
+    <!-- inject:js -->
+    <script src="/static/js/js_opt2/off-canvas.js"></script>
+    <script src="/static/js/js_opt2/hoverable-collapse.js"></script>
+    <script src="/static/js/js_opt2/misc.js"></script>
+    <script src="/static/js/js_opt2/settings.js"></script>
+    <script src="/static/js/js_opt2/todolist.js"></script>
+    <!-- endinject -->
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+  </body>
+</html>
