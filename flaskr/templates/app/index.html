@@ -16,6 +16,31 @@
 
         <div class="row">
 
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Recent Online Transactions</h5>
+                        <div class="table-responsive-sm">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionsList">
+                                    <!-- Transactions will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body">
@@ -76,6 +101,120 @@
                     
         
     </div>
+
+    <script>
+        // Your JavaScript functions
+        function updateBalance(balance) {
+            const balanceElement = document.querySelector('.card h2');
+            balanceElement.textContent = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'MYR'
+            }).format(balance);
+        }
+
+        // Add any other JavaScript functions you need
+        function initializeAccount() {
+            // Example: Set initial values or fetch from backend
+            updateBalance(25420.65);
+            
+            // Add event listeners for buttons
+            document.querySelector('.btn-primary').addEventListener('click', function() {
+                // Handle transfer button click
+                console.log('Transfer clicked');
+            });
+            
+            document.querySelector('.btn-outline-primary').addEventListener('click', function() {
+                // Handle statement button click
+                console.log('Statement clicked');
+            });
+        }
+
+        // Call initialization when document is ready
+        document.addEventListener('DOMContentLoaded', initializeAccount);
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sample transaction data
+        const transactions = [
+            {
+                date: '2024-01-15',
+                description: 'Online Transfer to John',
+                type: 'Transfer',
+                amount: -500.00,
+                status: 'Completed'
+            },
+            {
+                date: '2024-01-15',
+                description: 'Purchase at Shoppee',
+                type: 'Transfer',
+                amount: -500.00,
+                status: 'Completed'
+            },
+            {
+                date: '2024-01-14',
+                description: 'Salary Deposit',
+                type: 'Credit',
+                amount: 3000.00,
+                status: 'Completed'
+            },
+            {
+                date: '2024-01-13',
+                description: 'Online Shopping - Amazon',
+                type: 'Purchase',
+                amount: -125.50,
+                status: 'Completed'
+            },
+            {
+                date: '2024-01-12',
+                description: 'Bill Payment - Utilities',
+                type: 'Payment',
+                amount: -100.00,
+                status: 'Completed'
+            },
+        ];
+    
+        // Function to format date
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString();
+        }
+    
+        // Function to format amount
+        function formatAmount(amount) {
+            return amount.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'MYR'
+            });
+        }
+    
+        // Function to get status cell style
+        function getStatusStyle(status) {
+            const styles = {
+                'Completed': 'background-color: #198754; color: white;',
+                'Pending': 'background-color: #ffc107; color: black;',
+                'Failed': 'background-color: #dc3545; color: white;'
+            };
+            return styles[status] || 'background-color: #6c757d; color: white;';
+        }
+    
+        // Populate transactions
+        const transactionsList = document.getElementById('transactionsList');
+        transactions.forEach(transaction => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${formatDate(transaction.date)}</td>
+                <td>${transaction.description}</td>
+                <td>${transaction.type}</td>
+                <td class="${transaction.amount < 0 ? 'text-danger' : 'text-success'}">
+                    ${formatAmount(transaction.amount)}
+                </td>
+                <td style="${getStatusStyle(transaction.status)}">${transaction.status}</td>
+            `;
+            transactionsList.appendChild(row);
+        });
+    });
+    </script>
+    
 
     <!-- Add this script after including Chart.js -->
     <script>
@@ -251,37 +390,14 @@
         }
     </style>
 
-    <script>
-        // Your JavaScript functions
-        function updateBalance(balance) {
-            const balanceElement = document.querySelector('.card h2');
-            balanceElement.textContent = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD'
-            }).format(balance);
+    <style>
+        #transactionsList tr {
+            padding: 0;
         }
-
-        // Add any other JavaScript functions you need
-        function initializeAccount() {
-            // Example: Set initial values or fetch from backend
-            updateBalance(25420.65);
-            
-            // Add event listeners for buttons
-            document.querySelector('.btn-primary').addEventListener('click', function() {
-                // Handle transfer button click
-                console.log('Transfer clicked');
-            });
-            
-            document.querySelector('.btn-outline-primary').addEventListener('click', function() {
-                // Handle statement button click
-                console.log('Statement clicked');
-            });
+        #transactionsList td {
+            padding: 0;
         }
-
-        // Call initialization when document is ready
-        document.addEventListener('DOMContentLoaded', initializeAccount);
-    </script>
-
+    </style>
 
 </body>
 {% endblock content %}
