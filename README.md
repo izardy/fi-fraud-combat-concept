@@ -1,4 +1,4 @@
-# Let's be Hacktive !
+# Let's be HackTIVE !
 ## Fraud Detection System : A Framework Conceptualization
 ### Problem Statement
 - Issues highlighted in the existing process

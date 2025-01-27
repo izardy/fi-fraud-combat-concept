@@ -136,6 +136,40 @@ def registered_users():
     else:
         return redirect(url_for('index'))
     
+#################################################################################### [UPDATE USER PASSWORD]
+
+@bp.route('/<int:id>/password_update', methods=('GET', 'POST'))
+def password_update(id):
+    user = get_user(id)
+    if request.method == 'POST':
+        old_password = request.form['old-password']
+        new_password = request.form['new-password']
+        error = None
+
+        if not old_password:
+            error = 'Password is required.'
+        
+        if not check_password_hash(user['password'], old_password):
+            error = 'Incorrect password.'
+
+        if not new_password:
+            error = 'Password is required.'
+        
+        if error is not None:
+            flash(error)
+
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE cif SET password = ?'
+                ' WHERE id = ?',
+                (generate_password_hash(new_password), id)
+            )
+            db.commit()
+            return redirect(url_for('index'))
+
+    return render_template('auth/password-update.html', user=user)
+
 #################################################################################### [UPDATE USER PROFILE (USER)]
 
 def get_user(id):
@@ -151,7 +185,7 @@ def get_user(id):
     return user
 
 @bp.route('/<int:id>/user_update', methods=('GET', 'POST'))
-def admin_update(id):
+def user_update(id):
     user = get_user(id)
 
     if request.method == 'POST':
