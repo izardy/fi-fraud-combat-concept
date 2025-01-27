@@ -197,6 +197,7 @@ def user_update(id):
         postcode = request.form['postcode']
         area = request.form['area']
         state = request.form['state']
+        country = request.form['country']
         error = None
         
         if not email:
@@ -220,15 +221,18 @@ def user_update(id):
         if not state:
             error = 'state is required.'
 
+        if not country:
+            error = 'country is required.'
+
         if error is not None:
             flash(error)
 
         else:
             db = get_db()
             db.execute(
-                'UPDATE cif SET email = ?, phone = ?, address1 = ?, address2 = ?, postcode = ?, area = ?, state = ?'
+                'UPDATE cif SET email = ?, phone = ?, address1 = ?, address2 = ?, postcode = ?, area = ?, state = ?, country = ?'
                 ' WHERE id = ?',
-                (email, phone, address1, address2, postcode, area, state, id)
+                (email, phone, address1, address2, postcode, area, state, country, id)
             )
             db.commit()
             return redirect(url_for('auth.registered_users'))
