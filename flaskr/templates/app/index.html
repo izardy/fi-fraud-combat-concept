@@ -124,90 +124,90 @@
         document.addEventListener('DOMContentLoaded', initializeAccount);
     </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Sample transaction data
-        const transactions = [
-            {
-                date: '2024-01-15',
-                description: 'Online Transfer to John',
-                type: 'Transfer',
-                amount: -500.00,
-                status: 'Completed'
-            },
-            {
-                date: '2024-01-15',
-                description: 'Purchase at Shoppee',
-                type: 'Transfer',
-                amount: -500.00,
-                status: 'Completed'
-            },
-            {
-                date: '2024-01-14',
-                description: 'Salary Deposit',
-                type: 'Credit',
-                amount: 3000.00,
-                status: 'Completed'
-            },
-            {
-                date: '2024-01-13',
-                description: 'Online Shopping - Amazon',
-                type: 'Purchase',
-                amount: -125.50,
-                status: 'Completed'
-            },
-            {
-                date: '2024-01-12',
-                description: 'Bill Payment - Utilities',
-                type: 'Payment',
-                amount: -100.00,
-                status: 'Completed'
-            },
-        ];
-    
-        // Function to format date
-        function formatDate(dateString) {
-            return new Date(dateString).toLocaleDateString();
-        }
-    
-        // Function to format amount
-        function formatAmount(amount) {
-            return amount.toLocaleString('en-MY', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-                // style: 'currency',
-                // currency: 'MYR'
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample transaction data
+            const transactions = [
+                {
+                    date: '2024-01-15',
+                    description: 'Online Transfer to John',
+                    type: 'Transfer',
+                    amount: -500.00,
+                    status: 'Completed'
+                },
+                {
+                    date: '2024-01-15',
+                    description: 'Purchase at Shoppee',
+                    type: 'Transfer',
+                    amount: -500.00,
+                    status: 'Completed'
+                },
+                {
+                    date: '2024-01-14',
+                    description: 'Salary Deposit',
+                    type: 'Credit',
+                    amount: 3000.00,
+                    status: 'Completed'
+                },
+                {
+                    date: '2024-01-13',
+                    description: 'Online Shopping - Amazon',
+                    type: 'Purchase',
+                    amount: -125.50,
+                    status: 'Completed'
+                },
+                {
+                    date: '2024-01-12',
+                    description: 'Bill Payment - Utilities',
+                    type: 'Payment',
+                    amount: -100.00,
+                    status: 'Completed'
+                },
+            ];
+        
+            // Function to format date
+            function formatDate(dateString) {
+                return new Date(dateString).toLocaleDateString();
+            }
+        
+            // Function to format amount
+            function formatAmount(amount) {
+                return amount.toLocaleString('en-MY', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                    // style: 'currency',
+                    // currency: 'MYR'
+                });
+            }
+        
+            // Function to get status cell style
+            function getStatusStyle(status) {
+                const styles = {
+                    'Completed': 'background-color: #198754; color: white;',
+                    'Pending': 'background-color: #ffc107; color: black;',
+                    'Failed': 'background-color: #dc3545; color: white;'
+                };
+                return styles[status] || 'background-color: #6c757d; color: white;';
+            }
+        
+            // Populate transactions
+            // <td>${transaction.description}</td>
+            // <td style="${getStatusStyle(transaction.status)}">${transaction.status}</td>
+            const transactionsList = document.getElementById('transactionsList');
+            transactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${formatDate(transaction.date)}</td>
+                    <td>${transaction.type}</td>
+                    <td>${transaction.description}</td>
+                    <td class="${transaction.amount < 0 ? 'text-danger' : 'text-success'}">
+                        ${formatAmount(transaction.amount)}
+                    </td>
+                    <td style="${getStatusStyle(transaction.status)}">${transaction.status}</td>         
+                `;
+                transactionsList.appendChild(row);
             });
-        }
-    
-        // Function to get status cell style
-        function getStatusStyle(status) {
-            const styles = {
-                'Completed': 'background-color: #198754; color: white;',
-                'Pending': 'background-color: #ffc107; color: black;',
-                'Failed': 'background-color: #dc3545; color: white;'
-            };
-            return styles[status] || 'background-color: #6c757d; color: white;';
-        }
-    
-        // Populate transactions
-        // <td>${transaction.description}</td>
-        // <td style="${getStatusStyle(transaction.status)}">${transaction.status}</td>
-        const transactionsList = document.getElementById('transactionsList');
-        transactions.forEach(transaction => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${formatDate(transaction.date)}</td>
-                <td>${transaction.type}</td>
-                <td>${transaction.description}</td>
-                <td class="${transaction.amount < 0 ? 'text-danger' : 'text-success'}">
-                    ${formatAmount(transaction.amount)}
-                </td>
-                <td style="${getStatusStyle(transaction.status)}">${transaction.status}</td>         
-            `;
-            transactionsList.appendChild(row);
         });
-    });
     </script>
     
 
