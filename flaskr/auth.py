@@ -58,7 +58,7 @@ def register():
             try:
                 # Corrected SQL with proper columns/values
                 db.execute(
-                    """INSERT INTO user 
+                    """INSERT INTO cif 
                     (username, password, firstname, lastname, gender, dob,
                      address1, address2, postcode, area, state) 
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
@@ -91,18 +91,18 @@ def login():
         
         db = get_db()
         error = None
-        user = db.execute(
-            'SELECT * FROM user WHERE username = ?', (email,)  # Changed to email
+        cif = db.execute(
+            'SELECT * FROM cif WHERE username = ?', (email,)  # Changed to email
         ).fetchone()
 
-        if user is None:
+        if cif is None:
             error = 'Incorrect username.'
-        elif not check_password_hash(user['password'], password):
+        elif not check_password_hash(cif['password'], password):
             error = 'Incorrect password.'
 
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
+            session['user_id'] = cif['id']
             return redirect(url_for('index'))
 
         flash(error)
@@ -119,7 +119,7 @@ def load_logged_in_user():
         g.user = None
     else:
         g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
+            'SELECT * FROM cif WHERE id = ?', (user_id,)
         ).fetchone()
                 
 ####################################################################################
