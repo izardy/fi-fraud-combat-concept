@@ -1,0 +1,172 @@
+{% extends "/layouts/base.html" %}
+
+{% block header %}
+  <h1>{% block title %}Registered Users{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid py-5" style="width: 100%; height: calc(100vh - 66px); overflow: auto;">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-9 col-xl-7">
+            <div class="card rounded-3 shadow-lg">
+                <div class="card-body p-4">
+                  <h2 class="text-center my-3 pb-3">Registered Users</h2>
+
+                  <table class="table table-sm mb-4" style="font-size: small;">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <!--th scope="col">Gender</th-->
+                        <!--th scope="col">DOB</th-->
+                        <th scope="col">Phone</th>
+                        <!--th scope="col">Email</th-->
+                        <!--th scope="col">Address 1</th-->
+                        <!--th scope="col">Address 2</th-->
+                        <!--th scope="col">Postcode</th-->
+                        <!--th scope="col">Area</th-->
+                        <!--th scope="col">State</th-->
+                      </tr>
+                    </thead>
+                    <tbody id="table-body">
+                      {% for user in users %}
+                      <tr>
+                        <th scope="row">{{ user['id'] }}</th>
+                        <td>{{ user['username'] }}</td>
+                        <td>{{ user['firstname'] }}</td>
+                        <td>{{ user['lastname'] }}</td>
+                        <!--td>{{ user['gender'] }}</td-->
+                        <!--td>{{ user['dob'] }}</td-->
+                        <td>{{ user['phone'] }}</td>
+                        <!--td>{{ user['email'] }}</td-->
+                        <!--td>{{ user['address1'] }}</td-->
+                        <!--td>{{ user['address2'] }}</td-->
+                        <!--td>{{ user['postcode'] }}</td-->
+                        <!--td>{{ user['area'] }}</td-->
+                        <!--td>{{ user['state'] }}</td-->
+                        <td>
+                            <a href="{{ url_for('auth.admin_update',id=user['id']) }}">
+                                <button type="submit" class="btn btn-success btn-sm ms-1">Update</button>
+                            </a>
+                        </td>
+                        <td>
+
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <nav>
+                    <ul class="pagination justify-content-center" id="pagination">
+                      <!-- Pagination items will be inserted here by JavaScript -->
+                    </ul>
+                  </nav>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const rowsPerPage = 10;
+        const tableBody = document.getElementById('table-body');
+        const pagination = document.getElementById('pagination');
+        const rows = tableBody.querySelectorAll('tr');
+        const totalPages = Math.ceil(rows.length / rowsPerPage);
+        let currentPage = 1;
+
+        function displayPage(page) {
+          currentPage = page;
+          const start = (page - 1) * rowsPerPage;
+          const end = start + rowsPerPage;
+          rows.forEach((row, index) => {
+            row.style.display = (index >= start && index < end) ? '' : 'none';
+          });
+          updatePagination();
+        }
+
+        function updatePagination() {
+          pagination.innerHTML = '';
+
+          // Back button
+          const backButton = document.createElement('li');
+          backButton.classList.add('page-item');
+          backButton.innerHTML = `<a class="page-link" href="#">&#60;</a>`;
+          backButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (currentPage > 1) {
+              displayPage(currentPage - 1);
+            }
+          });
+          pagination.appendChild(backButton);
+
+          // Page numbers
+          let startPage = Math.max(1, currentPage - 2);
+          let endPage = Math.min(totalPages, currentPage + 2);
+
+          if (currentPage > 3 && totalPages > 5) {
+            const firstPage = document.createElement('li');
+            firstPage.classList.add('page-item');
+            firstPage.innerHTML = `<a class="page-link" href="#">1</a>`;
+            firstPage.addEventListener('click', function (e) {
+              e.preventDefault();
+              displayPage(1);
+            });
+            pagination.appendChild(firstPage);
+
+            const dots = document.createElement('li');
+            dots.classList.add('page-item', 'disabled');
+            dots.innerHTML = `<a class="page-link">...</a>`;
+            pagination.appendChild(dots);
+          }
+
+          for (let i = startPage; i <= endPage; i++) {
+            const li = document.createElement('li');
+            li.classList.add('page-item');
+            if (i === currentPage) li.classList.add('active');
+            li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+            li.addEventListener('click', function (e) {
+              e.preventDefault();
+              displayPage(i);
+            });
+            pagination.appendChild(li);
+          }
+
+          if (currentPage < totalPages - 2 && totalPages > 5) {
+            const dots = document.createElement('li');
+            dots.classList.add('page-item', 'disabled');
+            dots.innerHTML = `<a class="page-link">...</a>`;
+            pagination.appendChild(dots);
+
+            const lastPage = document.createElement('li');
+            lastPage.classList.add('page-item');
+            lastPage.innerHTML = `<a class="page-link" href="#">${totalPages}</a>`;
+            lastPage.addEventListener('click', function (e) {
+              e.preventDefault();
+              displayPage(totalPages);
+            });
+            pagination.appendChild(lastPage);
+          }
+
+          // Forward button
+          const forwardButton = document.createElement('li');
+          forwardButton.classList.add('page-item');
+          forwardButton.innerHTML = `<a class="page-link" href="#">&#62;</a>`;
+          forwardButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (currentPage < totalPages) {
+              displayPage(currentPage + 1);
+            }
+          });
+          pagination.appendChild(forwardButton);
+        }
+
+        displayPage(1);
+      });
+    </script>
+
+{% endblock %}

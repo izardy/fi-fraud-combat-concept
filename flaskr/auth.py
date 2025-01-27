@@ -125,7 +125,6 @@ def load_logged_in_user():
 #################################################################################### [LIST USER]
 
 @bp.route('/registered_users')
-@login_required
 def registered_users():
     if g.user['username']=='izardyamir@gmail.com':
         db = get_db()
@@ -133,14 +132,79 @@ def registered_users():
             'SELECT *'
             ' FROM cif'
         ).fetchall()
-        return render_template('app/registered_users.html', users=users)
+        return render_template('auth/registered-users.html', users=users)
     else:
         return redirect(url_for('index'))
+    
+#################################################################################### [UPDATE USER PROFILE (USER)]
+
+def get_user(id):
+    user = get_db().execute(
+        'SELECT *'
+        ' FROM cif'
+        ' WHERE id = ?',(id,)
+    ).fetchone()
+
+    if user is None:
+        abort(404, f"ID {id} doesn't exist.")
+
+    return user
+
+@bp.route('/<int:id>/user_update', methods=('GET', 'POST'))
+def admin_update(id):
+    user = get_user(id)
+
+    if request.method == 'POST':
+    
+        email = request.form['email']
+        phone = request.form['phone']
+        address1 = request.form['address1']
+        address2 = request.form['address2']
+        postcode = request.form['postcode']
+        area = request.form['area']
+        state = request.form['state']
+        error = None
+        
+        if not email:
+            error = 'email is required.'
+
+        if not phone:
+            error = 'phone is required.'
+
+        if not address1:
+            error = 'address1 is required.'
+
+        if not address2:
+            error = 'address2 is required.'
+
+        if not postcode:
+            error = 'postcode is required.'
+
+        if not area:
+            error = 'area is required.'
+
+        if not state:
+            error = 'state is required.'
+
+        if error is not None:
+            flash(error)
+
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE cif SET email = ?, phone = ?, address1 = ?, address2 = ?, postcode = ?, area = ?, state = ?'
+                ' WHERE id = ?',
+                (email, phone, address1, address2, postcode, area, state, id)
+            )
+            db.commit()
+            return redirect(url_for('auth.registered_users'))
+
+    return render_template('auth/cif-update.html', user=user)
+
 
 #################################################################################### [UPDATE USER PROFILE (ADMIN)]
 
 @bp.route('/<int:id>/admin_update', methods=('GET', 'POST'))
-@login_required
 def admin_update(id):
     if g.user['username']=='izardyamir@gmail.com':
         db = get_db()
@@ -153,12 +217,8 @@ def admin_update(id):
 
         if request.method == 'POST':
         
-            firstname = request.form['firstname']
-            lastname = request.form['lastname']
-            gender = request.form['gender']
-            dob = request.form['dob']
-            ic = request.form['ic']
             email = request.form['email']
+            phone = request.form['phone']
             address1 = request.form['address1']
             address2 = request.form['address2']
             postcode = request.form['postcode']
@@ -166,23 +226,11 @@ def admin_update(id):
             state = request.form['state']
             error = None
             
-            if not firstname:
-                error = 'firstname is required.'
-
-            if not lastname:
-                error = 'lastname is required.'
-            
-            if not gender:
-                error = 'gender is required.'
-
-            if not dob:
-                error = 'dob is required.'
-
-            if not ic:
-                error = 'ic is required.'
-
             if not email:
                 error = 'email is required.'
+
+            if not phone:
+                error = 'phone is required.'
 
             if not address1:
                 error = 'address1 is required.'
@@ -205,12 +253,12 @@ def admin_update(id):
             else:
                 db = get_db()
                 db.execute(
-                    'UPDATE cif SET firstname = ?, lastname = ?, gender = ?, dob = ?, ic = ?, email = ?, address1 = ?, address2 = ?, postcode = ?, area = ?, state = ?'
+                    'UPDATE cif SET email = ?, phone = ?, address1 = ?, address2 = ?, postcode = ?, area = ?, state = ?'
                     ' WHERE id = ?',
-                    (firstname, lastname, gender, dob, ic, email, address1, address2, postcode, area, state, id)
+                    (email, phone, address1, address2, postcode, area, state, id)
                 )
                 db.commit()
-                return redirect(url_for('registered_users'))
+                return redirect(url_for('auth.registered_users'))
 
     return render_template('auth/admin-update.html', users=users)
                 

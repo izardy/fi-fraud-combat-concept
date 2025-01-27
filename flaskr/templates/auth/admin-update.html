@@ -1,0 +1,117 @@
+{% extends "/layouts/base.html" %}
+
+{% block header %}
+  <h1>{% block title %}Update Research{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="container-fluid py-5" style="width: 100%; height: calc(102vh - 66px); overflow: auto;">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+
+            <h2 class="text-center my-3 pb-3">User Information Update</h2>
+
+            <form action="" method="post">
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="firstname" style="font-size: medium;">First Name</label><br>
+                  <label style="font-size: smaller;"><i>{{ request.form['firstname'] or users['firstname'] }}</i></label>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="lastname" style="font-size: medium;">Last Name</label><br>
+                  <label style="font-size: smaller;"><i>{{ request.form['lastname'] or users['lastname'] }}</i></label>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="gender" style="font-size: medium;">Gender</label><br>
+                  <label style="font-size: smaller;"><i>{{ request.form['gender'] or users['gender'] }}</i></label>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="dob" style="font-size: medium;">D.O.B</label><br>
+                  <label style="font-size: smaller;"><i>{{ request.form['dob'] or users['dob'] }}</i></label>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="ic" style="font-size: medium;">IC</label><br>
+                  <label style="font-size: smaller;"><i>{{ request.form['ic'] or users['ic'] }}</i></label>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="phone" style="font-size: medium;">Phone Number</label><br>
+                  <input name="phone" id="phone" type="tel" class="form-control" style="font-size: smaller;" value="{{ request.form['phone'] or users['phone'] }}" required>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="email" style="font-size: medium;">Email</label><br>
+                  <input name="email" id="email" type="email" class="form-control" style="font-size: smaller;" value="{{ request.form['email'] or users['email'] }}" required>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="address1" style="font-size: medium;">Address 1</label><br>
+                  <input name="address1" id="address1" type="text" class="form-control" style="font-size: smaller;" value="{{ request.form['address1'] or users['address1'] }}" required>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="address2" style="font-size: medium;">Address 2</label><br>
+                  <input name="address2" id="address2" type="text" class="form-control" style="font-size: smaller;" value="{{ request.form['address2'] or users['address2'] }}" required>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="postcode" style="font-size: medium;">Postcode</label><br>
+                  <input name="postcode" id="postcode" type="number" class="form-control" style="font-size: smaller;" value="{{ request.form['postcode'] or users['postcode'] }}" required>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="area" style="font-size: medium;">Area</label><br>
+                  <input name="area" id="area" type="text" class="form-control" style="font-size: smaller;" value="{{ request.form['area'] or users['area'] }}" required>
+                </div>
+              </div>
+
+              <div class="form-group row mb-4">
+                <div class="col-sm-12">
+                  <label class="mb-3" for="state" style="font-size: medium;">State</label><br>
+                  <input name="state" id="state" type="text" class="form-control" style="font-size: smaller;" value="{{ request.form['state'] or users['state'] }}" required>
+                </div>
+              </div>
+              
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary w-25">Submit</button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
