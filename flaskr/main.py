@@ -62,3 +62,10 @@ def login_required(view):
 def index():
     return render_template('app/index.html')
 
+#################################################################################### [MANAGE]
+
+@bp.route('/')
+@login_required
+def index():
+    return render_template('app/index.html')
+
