@@ -6,253 +6,98 @@
 
 {% block content %}
 
-<div class="container aligned-middle mt-5 overflow-auto"  scrolling="yes" frameborder="0" style=" width: 100%; height: calc(101vh - 66px)">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-md-12 mb-4">
+    <div class="col-12">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-primary">User Information Update</h5>
-          <div class="table-responsive-sm">
-
-            <form action="" method="post">
-
-              <div class="row">
-          
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label style="font-size: smaller; color: #a8adb5; text-align: right">{{ request.form['firstname'] or users['firstname'] }}</label>
-                  </div>
-                </div>
-
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label style="font-size: smaller; color: #a8adb5; text-align: right">{{ request.form['lastname'] or users['lastname'] }}</label>
-                  </div>
-                </div>
-
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label for="lastname" style="color: #a8adb5"></label>
-                  </div>
-                </div>  
-                
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label style="font-size: smaller; color: #a8adb5"></label>
-                  </div>
-                </div>  
-              
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label for="gender" style="color: #a8adb5"></label>
-                  </div>
-                </div>
-
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label style="font-size: smaller; color: #a8adb5">{{ request.form['gender'] or users['gender'] }}</label>
-                  </div>
-                </div>
-
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label for="dob" style="color: #a8adb5"></label>
-                  </div>
-                </div>
-
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label style="font-size: smaller; color: #a8adb5">{{ request.form['dob'] or users['dob'] }}</label>
-                  </div>
-                </div>
-
-                <div class="col-sm-1">
-                  <div class="form-group row mb-0">
-                    <label for="ic" style="color: #a8adb5"></label>
-                  </div>
-                </div>
-
-                <div class="col-sm-3">
-                  <div class="form-group row mb-0">
-                    <label style="font-size: smaller; color: #a8adb5">{{ request.form['ic'] or users['ic'] }}</label>
-                  </div>
-                </div>
-
+          <form action="" method="post">
+            <!-- First Row -->
+            <div class="row">
+              <div class="col-6 col-md-4 mb-3">
+                <label class="form-label text-muted">First Name</label>
+                <input type="text" class="form-control" value="{{ request.form['firstname'] or users['firstname'] }}" readonly>
               </div>
-
-              <div class="row">
-
-                <div class="col-sm-1 mt-4">
-                  <div class="form-group row mb-0">
-                    <label for="phone" style="color: #a8adb5">Phone</label>
-                  </div>
-                </div>
-
-                <div class="col-sm-5 mt-4">
-                  <div class="form-group row mb-0">
-                    <input name="phone" id="phone" type="tel" class="form-control bg-white" style="font-size: smaller; color: #a8adb5" value="{{ request.form['phone'] or users['phone'] }}" required>
-                  </div>
-                </div>
-
-                <div class="col-sm-1 mt-4">
-                  <div class="form-group row mb-0">
-                    <label for="email" style="color: #a8adb5">Email</label>
-                  </div>
-                </div>
-
-                <div class="col-sm-5 mt-4">
-                  <div class="form-group row mb-0">
-                    <input name="email" id="email" type="email" class="form-control bg-white" style="font-size: smaller; color: #a8adb5" value="{{ request.form['email'] or users['email'] }}" required>
-                  </div>
-                </div>
-
+              <div class="col-6 col-md-4 mb-3">
+                <label class="form-label text-muted">Last Name</label>
+                <input type="text" class="form-control" value="{{ request.form['lastname'] or users['lastname'] }}" readonly>
               </div>
-
-
-              <div class="row">
-
-                <div class="col-sm-1 mt-2">
-                  <div class="form-group row mb-0">
-                    <label for="address1" style="color: #a8adb5">Address 1</label><br>
-                  </div>
-                </div>
-
-                <div class="col-sm-5 mt-2">
-                  <div class="form-group row mb-0">
-                    <input name="address1" id="address1" type="text" class="form-control bg-white" style="font-size: smaller; color: #a8adb5" value="{{ request.form['address1'] or users['address1'] }}" required>
-                  </div>
-                </div>
-
-                <div class="col-sm-1 mt-2">
-                  <div class="form-group row mb-0">
-                    <label for="address2" style="color: #a8adb5">Address 2</label><br>
-                  </div>
-                </div>
-
-                <div class="col-sm-5 mt-2">
-                  <div class="form-group row mb-0">
-                    <input name="address2" id="address2" type="text" class="form-control bg-white" style="font-size: smaller; color: #a8adb5" value="{{ request.form['address2'] or users['address2'] }}" required>
-                  </div>
-                </div>
-
+              <div class="col-6 col-md-4 mb-3">
+                <label class="form-label text-muted">Gender</label>
+                <input type="text" class="form-control" value="{{ request.form['gender'] or users['gender'] }}" readonly>
               </div>
-
-              
-              <div class="row">
-
-                <div class="col-sm-1 mt-2">
-                  <div class="form-group row mb-0">
-                    <label for="postcode" style="color: #a8adb5">Postcode</label><br>
-                  </div>
-                </div>
-
-                <div class="col-sm-5 mt-2">
-                  <div class="form-group row mb-0">
-                    <input name="postcode" id="postcode" type="number" class="form-control bg-white" style="font-size: smaller; color: #a8adb5" value="{{ request.form['postcode'] or users['postcode'] }}" required>
-                  </div>
-                </div>
-
-                <div class="col-sm-1 mt-2">
-                  <div class="form-group row mb-0">
-                    <label for="area" style="color: #a8adb5">Area</label><br>
-                  </div>
-                </div>
-
-                <div class="col-sm-5 mt-2">
-                  <div class="form-group row mb-0">
-                    <input name="area" id="area" type="text" class="form-control bg-white" style="font-size: smaller; color: #a8adb5" value="{{ request.form['area'] or users['area'] }}" required>
-                  </div>
-                </div>
-
+            </div>
+            
+            <!-- Second Row -->
+            <div class="row">
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Phone</label>
+                <input name="phone" type="tel" class="form-control" value="{{ request.form['phone'] or users['phone'] }}" required>
               </div>
-
-              <div class="row">
-
-                <div class="col-sm-1 mt-2">
-                  <div class="form-group row mb-0">
-                    <label class="mb-3" for="state" style="color: #a8adb5">State</label><br>
-                  </div>
-                </div>
-
-                <div class="col-sm-5 mt-2">
-                  <div class="form-group row mb-0">
-                    <input name="state" id="state" type="text" class="form-control bg-white" style="font-size: smaller; color: #a8adb5" value="{{ request.form['state'] or users['state'] }}" required>
-                  </div>
-                </div>
-
-                <div class="col-sm-1 mt-2">
-                  <div class="form-group row mb-0">
-                    <label class="mb-3" for="country" style="color: #a8adb5">Country</label><br>
-                  </div>
-                </div>
-
-                <div class="col-sm-5 mt-2">
-                  <div class="form-group row mb-0">
-                    <input name="country" id="country" type="text" class="form-control bg-white" style="font-size: smaller; color: #a8adb5" value="{{ request.form['country'] or users['country'] }}" required>
-                  </div>
-                </div>
-
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Email</label>
+                <input name="email" type="email" class="form-control" value="{{ request.form['email'] or users['email'] }}" required>
               </div>
-                
-                <div class="text-center mt-4">
-                  <button type="submit" class="btn btn-primary w-25">Submit</button>
-                </div>
-              
+            </div>
+            
+            <!-- Address -->
+            <div class="row">
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Address 1</label>
+                <input name="address1" type="text" class="form-control" value="{{ request.form['address1'] or users['address1'] }}" required>
+              </div>
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Address 2</label>
+                <input name="address2" type="text" class="form-control" value="{{ request.form['address2'] or users['address2'] }}" required>
+              </div>
+            </div>
 
-            </form>
+            <!-- Additional Details -->
+            <div class="row">
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Postcode</label>
+                <input name="postcode" type="number" class="form-control" value="{{ request.form['postcode'] or users['postcode'] }}" required>
+              </div>
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Area</label>
+                <input name="area" type="text" class="form-control" value="{{ request.form['area'] or users['area'] }}" required>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">State</label>
+                <input name="state" type="text" class="form-control" value="{{ request.form['state'] or users['state'] }}" required>
+              </div>
+              <div class="col-12 col-md-6 mb-3">
+                <label class="form-label">Country</label>
+                <input name="country" type="text" class="form-control" value="{{ request.form['country'] or users['country'] }}" required>
+              </div>
+            </div>
 
-
-
-
-          </div>
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary w-50">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-    <!-- Add this style section in your head tag -->
-    <style>
-      .card-body {
-          height: 400px;  /* Adjust this value as needed */
-      }
-      </style>
-  
-      <style>
-          .card {
-              border-radius: 15px;
-              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-              transition: transform 0.2s ease;
-              background: white;
-          }            
-          .card:hover {
-              transform: translateY(-5px);
-          }
-          .card-body {
-              padding: 1.5rem;
-          }
-          .text-primary {
-              color: #2563eb !important;
-          }
-          .bg-light {
-              background-color: #f3f4f6 !important;
-          }
-          .btn-primary {
-              background-color: #2563eb;
-              border-color: #2563eb;
-          }
-          .btn-outline-primary {
-              color: #2563eb;
-              border-color: #2563eb;
-          }
-          .text-muted {
-              color: #6b7280 !important;
-          }
-          .fw-bold {
-              font-weight: 600;
-          }
-          
-      </style>
+<style>
+  @media (max-width: 768px) {
+    .card {
+      padding: 1rem;
+    }
+    .form-label {
+      font-size: 0.9rem;
+    }
+    .btn {
+      font-size: 1rem;
+    }
+  }
+</style>
 
 {% endblock %}
