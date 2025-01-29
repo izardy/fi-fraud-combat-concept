@@ -47,19 +47,19 @@
                         <h5 class="card-title text-primary">Account Balance</h5>
                         <div class="mt-4">
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="text-muted mb-1">Available Balance</span>
-                                <h2 class="mb-0 fw-bold" style="color: #a8adb5">$25,420.65</h2>
+                                <span class="text-muted mb-1">Available Balance (MYR)</span>
+                                <h2 class="mb-0 fw-bold" style="color: #a8adb5">{{ account_balance }}</h2>
                             </div>
                         </div>
                         
                         <div class="mt-4">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-muted mb-1">Account Type</span>
-                                <span class="mb-0 fw-bold" style="color: #a8adb5">Savings Account</span>
+                                <span class="mb-0 fw-bold" style="color: #a8adb5">{{ productNAME }}</span>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-muted mb-1">Account Number</span>
-                                <span class="mb-0 fw-bold" style="color: #a8adb5">****3456</span>
+                                <span class="mb-0 fw-bold" style="color: #a8adb5">{{ accountID }}</span>
                             </div>
                         </div>
                     </div>
@@ -93,77 +93,14 @@
         </div>
     </div>
 
-    <script>
-        // Your JavaScript functions
-        function updateBalance(balance) {
-            const balanceElement = document.querySelector('.card h2');
-            balanceElement.textContent = new Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'MYR'
-            }).format(balance);
-        }
 
-        // Add any other JavaScript functions you need
-        function initializeAccount() {
-            // Example: Set initial values or fetch from backend
-            updateBalance(25420.65);
-            
-            // Add event listeners for buttons
-            document.querySelector('.btn-primary').addEventListener('click', function() {
-                // Handle transfer button click
-                console.log('Transfer clicked');
-            });
-            
-            document.querySelector('.btn-outline-primary').addEventListener('click', function() {
-                // Handle statement button click
-                console.log('Statement clicked');
-            });
-        }
-
-        // Call initialization when document is ready
-        document.addEventListener('DOMContentLoaded', initializeAccount);
-    </script>
+    <!-- place a hidden field somewhere in your template to "hold" your data -->
+    <input type="hidden"  id="data_last_5_transactions_json" value="{{ last_5_transactions_json }}">
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Sample transaction data
-            const transactions = [
-                {
-                    date: '2024-01-15',
-                    description: 'Online Transfer to John',
-                    type: 'Transfer',
-                    amount: -500.00,
-                    status: 'Completed'
-                },
-                {
-                    date: '2024-01-15',
-                    description: 'Purchase at Shoppee',
-                    type: 'Transfer',
-                    amount: -500.00,
-                    status: 'Completed'
-                },
-                {
-                    date: '2024-01-14',
-                    description: 'Salary Deposit',
-                    type: 'Credit',
-                    amount: 3000.00,
-                    status: 'Completed'
-                },
-                {
-                    date: '2024-01-13',
-                    description: 'Online Shopping - Amazon',
-                    type: 'Purchase',
-                    amount: -125.50,
-                    status: 'Completed'
-                },
-                {
-                    date: '2024-01-12',
-                    description: 'Bill Payment - Utilities',
-                    type: 'Payment',
-                    amount: -100.00,
-                    status: 'Completed'
-                },
-            ];
+            const transactions = JSON.parse(document.querySelector('#data_last_5_transactions_json').value);
         
             // Function to format date
             function formatDate(dateString) {
@@ -275,6 +212,11 @@
             });
         });
     </script>
+
+
+    <!-- place a hidden field somewhere in your template to "hold" your data -->
+    <input type="hidden"  id="data_months_list" value="{{ months_list_update }}">
+    <input type="hidden"  id="data_total_monthly_transactions_list" value="{{ total_monthly_transactions_list }}">
     
     <!-- Add this script section at the bottom of your body tag -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -282,16 +224,25 @@
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('monthlySpendingChart').getContext('2d');
         
+
+        // For a string that looks like '["item1", "item2", "item3"]'
+        const stringList = document.querySelector('#data_months_list').value;
+        const months = stringList.split(',');
+
+
         // Get last 12 months
-        const months = [];
-        for (let i = 11; i >= 0; i--) {
-            const d = new Date();
-            d.setMonth(d.getMonth() - i);
-            months.push(d.toLocaleString('default', { month: 'short' }));
-        }
+        //const months = JSON.parse(document.querySelector('#data_months_list').value);
+        //const months = [];
+        //for (let i = 11; i >= 0; i--) {
+          //  const d = new Date();
+           // d.setMonth(d.getMonth() - i);
+            //months.push(d.toLocaleString('default', { month: 'short' }));
+        //}
     
         // Sample expenses data
-        const expenses = [3200.45, 2890.30, 3450.20, 2950.75, 3100.90, 2780.50, 2780.50, 3100.90, 2780.50, 2780.50, 2780.50, 2780.50];
+        // const expenses = [3200.45, 2890.30, 3450.20, 2950.75, 3100.90, 2780.50, 2780.50, 3100.90, 2780.50, 2780.50, 2780.50, 2780.50];
+        const expenses = JSON.parse(document.querySelector('#data_total_monthly_transactions_list').value);
+
     
         new Chart(ctx, {
             type: 'bar',
