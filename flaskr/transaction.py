@@ -209,12 +209,6 @@ def index():
                             months_list_update=months_list_update,  total_monthly_transactions_list=total_monthly_transactions_list,
                             category_list=category_list, pct_category_list=pct_category_list)
 
-#################################################################################### [UPLOAD FILE]
-
-@bp.route('/add_scammer', methods=['POST', 'GET'])
-@login_required
-def add_scammer():    
-    return render_template('app/add-scammer.html')
 
 #################################################################################### [MANAGE]
 '''

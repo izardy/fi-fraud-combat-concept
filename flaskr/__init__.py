@@ -62,14 +62,5 @@ def create_app(test_config=None):
 
     #########################
 
-    @app.route('/banana/<path:filename>')
-    @login_required
-    def banana(filename):
-        return send_from_directory(
-            os.path.join(app.instance_path, 'banana'),
-            filename
-    )
-
-    #########################
 
     return app
