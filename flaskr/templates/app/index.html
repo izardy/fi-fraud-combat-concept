@@ -120,7 +120,7 @@
             // Function to get status cell style
             function getStatusStyle(status) {
                 const styles = {
-                    'Completed': 'background-color: #198754; color: white;',
+                    'Completed': 'background-color: #4CAF50; color: white;',
                     'Pending': 'background-color: #ffc107; color: black;',
                     'Failed': 'background-color: #dc3545; color: white;'
                 };
@@ -147,30 +147,39 @@
         });
     </script>
     
+    <!-- place a hidden field somewhere in your template to "hold" your data -->
+    <input type="hidden"  id="category_list" value="{{ category_list }}">
+    <input type="hidden"  id="pct_category_list" value="{{ pct_category_list }}">
 
     <!-- Add this script after including Chart.js -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('categorySpendingChart').getContext('2d');
+
+            const stringList1 = document.querySelector('#category_list').value;
+            const floatList1 = document.querySelector('#pct_category_list').value;
+            const labels_data = stringList1.split(',');
+            const pct_data = floatList1.split(',');
             
             // Sample data for spending categories
             const data = {
-                labels: [
-                    'Food & Dining',
-                    'Transportation',
-                    'Shopping',
-                    'Bills & Utilities',
-                    'Others'
-                ],
+                labels: labels_data,
                 datasets: [{
-                    data: [30, 20, 25, 15, 10], // Percentages of spending
+                    data: pct_data, // Percentages of spending
                     backgroundColor: [
-                        '#FF6384',
-                        '#36A2EB',
-                        '#FFCE56',
-                        '#4BC0C0',
-                        '#9966FF'
-                    ],
+                                        '#2196F3',  // Material Blue
+                                        '#F44336',  // Material Red
+                                        '#4CAF50',  // Material Green
+                                        '#FFC107',  // Material Amber
+                                        '#9C27B0',  // Material Purple
+                                        '#FF5722',  // Material Deep Orange
+                                        '#00BCD4',  // Material Cyan
+                                        '#E91E63',  // Material Pink
+                                        '#673AB7',  // Material Deep Purple
+                                        '#8BC34A'   // Material Light Green
+                                    ]
+
+,
                     borderWidth: 1
                 }]
             };
@@ -194,7 +203,7 @@
                                 boxWidth: 10,
                                 padding: 10,
                                 font: {
-                                    size: 11
+                                    size: 10
                                 }
                             }
                         },
@@ -251,8 +260,8 @@
                 datasets: [{
                     label: 'Monthly Expenses',
                     data: expenses,
-                    backgroundColor: '#a8adb5',
-                    borderColor: '#a8adb5',
+                    backgroundColor: '#2196F3',
+                    borderColor: '#2196F3',
                     borderWidth: 1
                 }]
             },

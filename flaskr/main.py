@@ -88,12 +88,22 @@ def index():
     AND accountID = '"""+ accountID + """'
     GROUP BY strftime('%Y-%m', dates.date)
     ORDER BY month;
-
     """
-
+    query_total_monthly_debit_transactions_by_category = """
+    SELECT *, ROUND((total_amount/denominator)*100, 2) as pct FROM
+    (SELECT *, SUM(ABS(total_amount)) OVER() as denominator FROM 
+    (SELECT category, COUNT(*) as transaction_count, SUM(ABS(Amount)) as total_amount, ROUND(AVG(ABS(Amount)), 2) as average_amount
+    FROM 
+    (SELECT * FROM "productID(1)-transactions" WHERE accountID = '"""+ accountID + """' AND transactionTYPE = "Debit" AND date >= date('now', '-30 days') ORDER BY ROWID DESC)
+    GROUP BY category))
+        """
+    
     account_balance = db.execute(
         query_account_balance
     ).fetchone()
+
+    # Handle case where no transactions exist
+    balance = account_balance['accountBAL'] if account_balance else 0
 
     last_5_transactions = db.execute(
         query_last_5_transactions
@@ -178,18 +188,26 @@ def index():
     months_list_update =  ','.join(months_list_update)
 
     
-         
+    
+    total_monthly_debit_transactions_by_category = db.execute(query_total_monthly_debit_transactions_by_category).fetchall()
+    category_list = []
+    pct_category_list = []
+    for category_transaction in total_monthly_debit_transactions_by_category:
+            category=category_transaction['category']
+            pct_category=float(category_transaction['pct'])
+            category_list.append(category)
+            pct_category_list.append(pct_category)
+
+    category_list = list(set([x for x in category_list if x is not None]))
+
+    category_list =  ','.join(category_list)
+
         
 
-    # Handle case where no transactions exist
-    balance = account_balance['accountBAL'] if account_balance else 0
-
-
-
-    
     return render_template('app/index.html', account_balance=balance, productNAME=productNAME, 
                             accountID=accountID, last_5_transactions_json=last_5_transactions_json,
-                            months_list_update=months_list_update,  total_monthly_transactions_list=total_monthly_transactions_list)
+                            months_list_update=months_list_update,  total_monthly_transactions_list=total_monthly_transactions_list,
+                            category_list=category_list, pct_category_list=pct_category_list)
 
 
 #################################################################################### [MANAGE]
