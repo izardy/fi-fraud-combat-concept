@@ -193,12 +193,13 @@
                     layout: {
                         padding: {
                             top: 0,    // Reduce top padding to move chart up
-                            bottom: 150 // Add bottom padding to create space below
+                            bottom: 0 // Add bottom padding to create space below
                         }
                     },
                     plugins: {
                         legend: {
-                            position: 'left',
+                            position: 'bottom',
+                            align: 'start',    // This will align the legend to the left
                             labels: {
                                 boxWidth: 10,
                                 padding: 10,
@@ -298,7 +299,7 @@
     <!-- Add this style section in your head tag -->
     <style>
     .card-body {
-        height: 250px;  /* Adjust this value as needed */
+        height: auto;  /* Adjust this value as needed */
     }
     </style>
 
