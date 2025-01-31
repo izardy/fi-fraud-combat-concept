@@ -3,6 +3,7 @@ from flask import (
 )
 
 import requests
+from datetime import datetime
 
 from werkzeug.exceptions import abort
 
@@ -213,7 +214,44 @@ def index():
 
 @bp.route('/add_scammer', methods=['POST', 'GET'])
 @login_required
-def add_scammer():    
+def add_scammer():
+
+    # Get user ID
+    reporterID = g.user['id']
+
+    # Get current datetime in format compatible with datetime-local
+    recordedDate = datetime.now().strftime("%Y-%m-%dT%H:%M")
+
+    if request.method == 'POST':
+        scammerName = request.form['scammer_name']
+        contact = request.form['contact_info']
+        reportedDate = request.form['reported_date']
+        bankAccount = request.form['bank_account']
+        bankName = request.form['bank_name']
+        bankAccountName = request.form['bank_account_name']
+    
+
+        platform = request.form['platform']
+
+        tiktokID = request.form['tiktok']
+        facebookID = request.form['facebook']
+        twitterID = request.form['twitter']
+        instagramID = request.form['instagram']
+        telegramID = request.form['telegram']
+        sourceReport1 = request.form['url_1']
+        sourceReport2 = request.form['url_2']
+        sourceReport3 = request.form['url_3']
+
+        db = get_db()
+        db.execute(
+            """
+            INSERT INTO scammer (scammerName, contact, reporterID, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, 
+            platform, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (scammerName, contact, reporterID, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, platform, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3)
+        )
+        db.commit()
+    
     return render_template('app/add-scammer.html')
 
 #################################################################################### [FIND SCAMMER]
@@ -222,6 +260,129 @@ def add_scammer():
 @login_required
 def search_scammer():    
     return render_template('app/search-scammer.html')
+
+#################################################################################### [MANAGE SCAMMER]
+
+# [SHOW CONTRIBUTED LIST]
+@bp.route('/manage_scammer', methods=['POST', 'GET'])
+@login_required
+def manage_scammer():
+    db = get_db()
+    scammers = db.execute(
+        'SELECT * FROM scammer WHERE reporterID='+str(g.user['id'])
+    ).fetchall()
+    
+    return render_template('app/manage-scammer.html', scammers=scammers)
+
+# [EDIT CONTRIBUTED LIST]
+
+def get_scammer(id):
+    scammer = get_db().execute(
+        'SELECT *'
+        ' FROM scammer'
+        ' WHERE scammerID = ?',(id,)
+    ).fetchone()
+
+    if scammer is None:
+        abort(404, f"Scammer id {id} doesn't exist.")
+
+    return scammer
+
+# [UPDATE/EDIT INFO]
+
+@bp.route('/<int:id>/scammer_update', methods=('POST', 'GET'))
+@login_required
+def scammer_update(id):
+    db = get_db()
+    scammer_update = get_scammer(id)
+
+    # Fetch comments for this scammer id
+    comments = db.execute(
+        'SELECT user_id, content, created_at FROM comments WHERE post_id = ? ORDER BY created_at DESC',
+        (id,)
+    ).fetchall()
+
+    if request.method == 'POST':
+        scammerName = request.form['scammer_name']
+        contact = request.form['contact_info']
+        reportedDate = request.form['reported_date']
+        bankAccount = request.form['bank_account']
+        bankName = request.form['bank_name']
+        bankAccountName = request.form['bank_account_name']
+    
+        platform = request.form['platform']
+        tiktokID = request.form['tiktok']
+        facebookID = request.form['facebook']
+        twitterID = request.form['twitter']
+        instagramID = request.form['instagram']
+        telegramID = request.form['telegram']
+        
+        sourceReport1 = request.form['url_1']
+        sourceReport2 = request.form['url_2']
+        sourceReport3 = request.form['url_3']
+
+        user_id = g.user['username']
+        new_comment = request.form['new_comment']
+
+        error = None
+
+        if not scammerName:
+            error = '!'
+        if not contact:
+            error = '!'
+        if not reportedDate:
+            error = '!'
+        if not bankAccount:
+            error = '!'
+        if not bankName:
+            error = '!'
+        if not bankAccountName:
+            error = '!'
+
+        if not platform:
+            error = '!'
+        if not tiktokID:
+            error = '!'
+        if not facebookID:
+            error = '!'
+        if not twitterID:
+            error = '!'
+        if not instagramID:
+            error = '!'
+        if not telegramID:
+            error = '!'
+
+        elif not sourceReport1:
+            error = '!'
+
+        if error is not None:
+            flash(error)
+        
+        else:
+
+            # Get current datetime in format compatible with datetime-local
+            recordedDate = datetime.now().strftime("%Y-%m-%dT%H:%M")
+            
+            # Update scammer info
+            db.execute(
+                'UPDATE scammer SET scammerName = ?, contact = ?, reportedDate = ?, recordedDate = ?, bankAccount = ?, bankName = ?, bankAccountName = ?, platform = ?, tiktokID = ?, facebookID = ?'
+                'twitterID = ?, instagramID = ?, telegramID = ?, sourceReport1 = ?, sourceReport3 = ?'
+                ' WHERE id = ?',
+                (scammerName, contact, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, platform, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3, id)
+            )
+
+            # Insert new comment if provided
+            if new_comment:
+                db.execute(
+                    'INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)',
+                    (id, user_id, new_comment)
+                )
+
+            db.commit()
+            return redirect(url_for('main.manage_scammer'))
+
+    return render_template('app/scammer-update.html', scammer_update=scammer_update, comments=comments)
+
 
 #################################################################################### [TRANSFER]
 
