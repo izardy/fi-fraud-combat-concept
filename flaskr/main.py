@@ -365,9 +365,9 @@ def scammer_update(id):
             
             # Update scammer info
             db.execute(
-                'UPDATE scammer SET scammerName = ?, contact = ?, reportedDate = ?, recordedDate = ?, bankAccount = ?, bankName = ?, bankAccountName = ?, platform = ?, tiktokID = ?, facebookID = ?'
-                'twitterID = ?, instagramID = ?, telegramID = ?, sourceReport1 = ?, sourceReport3 = ?'
-                ' WHERE id = ?',
+                'UPDATE scammer SET scammerName = ?, contact = ?, reportedDate = ?, recordedDate = ?, bankAccount = ?, bankName = ?, bankAccountName = ?, platform = ?, tiktokID = ?, facebookID = ?,'
+                'twitterID = ?, instagramID = ?, telegramID = ?, sourceReport1 = ?, sourceReport2 = ?, sourceReport3 = ?'
+                ' WHERE scammerID = ?',
                 (scammerName, contact, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, platform, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3, id)
             )
 

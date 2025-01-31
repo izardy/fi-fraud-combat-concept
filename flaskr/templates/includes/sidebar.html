@@ -43,7 +43,7 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#transaction" aria-expanded="false" aria-controls="transaction">
           <span class="menu-icon">
-            <i class="mdi mdi-cash"></i>
+            <i class="mdi mdi-cash" style="color: cadetblue;"></i>
           </span>
           <span class="menu-title">Transaction</span>
           <i class="menu-arrow"></i>
@@ -60,7 +60,7 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#scam-info" aria-expanded="false" aria-controls="scam-info">
           <span class="menu-icon">
-            <i class="mdi mdi-food"></i>
+            <i class="mdi mdi-alert" style="color: goldenrod;"></i>
           </span>
           <span class="menu-title">Scam Info</span>
           <i class="menu-arrow"></i>
@@ -69,7 +69,8 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.search_scammer') }}">Search Scammer</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.add_scammer') }}">Add Scammer</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.manage_scammer') }}">Editor</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.manage_scammer') }}">User Editor</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.manage_scammer') }}">Admin Editor</a></li>
           </ul>
         </div>
       </li>
@@ -77,7 +78,7 @@
       <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#manage" aria-expanded="false" aria-controls="manage">
           <span class="menu-icon">
-            <i class="mdi mdi-food"></i>
+            <i class="mdi mdi-cog-outline" style="color: blueviolet;"></i>
           </span>
           <span class="menu-title">Manage</span>
           <i class="menu-arrow"></i>
