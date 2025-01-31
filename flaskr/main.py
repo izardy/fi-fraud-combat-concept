@@ -209,12 +209,26 @@ def index():
                             months_list_update=months_list_update,  total_monthly_transactions_list=total_monthly_transactions_list,
                             category_list=category_list, pct_category_list=pct_category_list)
 
-#################################################################################### [UPLOAD FILE]
+#################################################################################### [ADD SCAMMER]
 
 @bp.route('/add_scammer', methods=['POST', 'GET'])
 @login_required
 def add_scammer():    
     return render_template('app/add-scammer.html')
+
+#################################################################################### [FIND SCAMMER]
+
+@bp.route('/search_scammer', methods=['POST', 'GET'])
+@login_required
+def search_scammer():    
+    return render_template('app/search-scammer.html')
+
+#################################################################################### [TRANSFER]
+
+@bp.route('/transfer', methods=['POST', 'GET'])
+@login_required
+def transfer():    
+    return render_template('app/transfer.html')
 
 #################################################################################### [MANAGE]
 '''
