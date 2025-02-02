@@ -261,12 +261,12 @@ def add_scammer():
 def search_scammer():    
     return render_template('app/search-scammer.html')
 
-#################################################################################### [MANAGE SCAMMER]
+#################################################################################### [MANAGE SCAMMER - USER]
 
 # [SHOW CONTRIBUTED LIST]
-@bp.route('/manage_scammer', methods=['POST', 'GET'])
+@bp.route('/manage_scammer_user', methods=['POST', 'GET'])
 @login_required
-def manage_scammer():
+def manage_scammer_user():
     db = get_db()
     scammers = db.execute(
         'SELECT * FROM scammer WHERE reporterID='+str(g.user['id'])
@@ -382,6 +382,80 @@ def scammer_update(id):
             return redirect(url_for('main.manage_scammer'))
 
     return render_template('app/scammer-update.html', scammer_update=scammer_update, comments=comments)
+
+
+#################################################################################### [MANAGE SCAMMER - ADMIN]
+
+
+@bp.route('/manage_scammer_admin', methods=['POST', 'GET'])
+@login_required
+def manage_scammer_admin():
+    if g.user['username']=='izardyamir@gmail.com':
+        db = get_db()
+        scammers = db.execute(
+            'SELECT * FROM scammer'
+        ).fetchall()
+        
+        return render_template('app/manage-scammer.html', scammers=scammers)
+
+@bp.route('/<int:id>/admin_update', methods=('GET', 'POST'))
+def admin_update(id):
+    if g.user['username']=='izardyamir@gmail.com':
+        db = get_db()
+
+        # Fetch user
+        users = db.execute(
+            'SELECT * FROM cif WHERE id = ?',
+            (id,)
+        ).fetchone()
+
+        if request.method == 'POST':
+        
+            email = request.form['email']
+            phone = request.form['phone']
+            address1 = request.form['address1']
+            address2 = request.form['address2']
+            postcode = request.form['postcode']
+            area = request.form['area']
+            state = request.form['state']
+            error = None
+            
+            if not email:
+                error = 'email is required.'
+
+            if not phone:
+                error = 'phone is required.'
+
+            if not address1:
+                error = 'address1 is required.'
+
+            if not address2:
+                error = 'address2 is required.'
+
+            if not postcode:
+                error = 'postcode is required.'
+
+            if not area:
+                error = 'area is required.'
+
+            if not state:
+                error = 'state is required.'
+
+            if error is not None:
+                flash(error)
+
+            else:
+                db = get_db()
+                db.execute(
+                    'UPDATE cif SET email = ?, phone = ?, address1 = ?, address2 = ?, postcode = ?, area = ?, state = ?'
+                    ' WHERE id = ?',
+                    (email, phone, address1, address2, postcode, area, state, id)
+                )
+                db.commit()
+                return redirect(url_for('auth.registered_users'))
+
+    return render_template('auth/admin-update.html', users=users)
+                
 
 
 #################################################################################### [TRANSFER]
