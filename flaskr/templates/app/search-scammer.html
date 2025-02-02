@@ -23,6 +23,57 @@
 
                         <form action="" method="post">
 
+                            <div class="row mt-3">
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_name" style="color: #a8adb5; font-size: 12px">Search by Name</label>
+                                    <input type="text" name="search_by_name" id="search_by_name" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_acc_no" style="color: #a8adb5; font-size: 12px">Search by Bank Account Number</label>
+                                    <input type="text" name="search_by_acc_no" id="search_by_acc_no" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_phone_no" style="color: #a8adb5; font-size: 12px">Search by Phone Number</label>
+                                    <input type="text" name="search_by_phone_no" id="search_by_phone_no" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                           </div>
+
+                           <div class="row mt-3">
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_facebook_id" style="color: #a8adb5; font-size: 12px">Search by Facebook ID</label>
+                                    <input type="text" name="search_by_facebook_id" id="search_by_facebook_id" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_tiktok_id" style="color: #a8adb5; font-size: 12px">Search by Tik Tok ID</label>
+                                    <input type="text" name="search_by_tiktok_id" id="search_by_tiktok_id" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_twitter_id" style="color: #a8adb5; font-size: 12px">Search by Twitter/X ID</label>
+                                    <input type="text" name="search_by_twitter_id" id="search_by_twitter_id" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                           </div>
+
+                           <div class="row mt-3">
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_instagram_id" style="color: #a8adb5; font-size: 12px">Search by Instagram ID</label>
+                                    <input type="text" name="search_by_instagram_id" id="search_by_instagram_id" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_telegram_id" style="color: #a8adb5; font-size: 12px">Search by Telegram ID</label>
+                                    <input type="text" name="search_by_telegram_id" id="search_by_telegram_id" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                                <div class="col-sm-4 mt-2">
+                                    <label for="search_by_keyword" style="color: #a8adb5; font-size: 12px">Search by Keyword</label>
+                                    <input type="text" name="search_by_keyword" id="search_by_keyword" value="{{ request.form['stateInput'] }}" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" required>
+                                </div>
+                            </div>
+
+                            
+                            <div class="text-center mt-5">
+                                <button type="submit" class="btn btn-primary w-25" value="Save">Search</button>
+                            </div>
+                          
+
 
 
                         </form>
