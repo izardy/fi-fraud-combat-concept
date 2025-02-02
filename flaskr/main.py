@@ -455,6 +455,66 @@ def admin_update(id):
                 return redirect(url_for('auth.registered_users'))
 
     return render_template('auth/admin-update.html', users=users)
+
+#################################################################################### [SCAMMER SEARCH]
+
+@bp.route('/search_scammer', methods=('GET', 'POST'))
+@login_required
+
+def search_scammer():
+
+    db = get_db()
+    properties = db.execute(
+        'SELECT *'
+        ' FROM scammer'
+        #' ORDER BY id ASC'
+    ).fetchall()
+
+
+    if request.method == 'POST':
+        scammerName =request.form['search_by_name']
+        bankAccount =request.form['search_by_acc_no']
+        contact =request.form['search_by_contact_info']
+        facebookID =request.form['search_by_facebook_id']
+        tiktokID =request.form['search_by_tiktok_id']
+        twitterID =request.form['search_by_twitter_id']
+        instagramID =request.form['search_by_instagram_id']
+        telegramID =request.form['search_by_telegram_id']
+        platform ='%'+(request.form['search_by_platform'])+'%'
+
+        error = None
+
+        if not scammerName:
+            scammerName = ''
+        if not bankAccount:
+            bankAccount = ''
+        if not contact:
+            contact = ''
+        if not facebookID:
+            facebookID = ''
+        if not tiktokID:
+            tiktokID = ''
+        if not twitterID:
+            twitterID = ''
+        if not instagramID:
+            instagramID = ''
+        if not telegramID:
+            telegramID = ''
+        if not platform:
+            platform = ''
+        if error is not None:
+            flash(error)                
+        else:
+            db = get_db()
+            properties = db.execute(
+                'SELECT id,property_name,property_status,property_address,stateInput,districtInput,ttl_room,ttl_bathroom,aircond,wifi,washing,cooking,homestay_rate,phone'
+                ' FROM property'
+                 ' WHERE (stateInput = ? OR districtInput = ? OR property_name like :property_name) AND (ttl_room = ? OR ttl_bathroom = ? OR aircond = ? OR wifi = ? OR washing = ? OR cooking = ?) AND (homestay_rate <= ?)',(stateInput,districtInput,property_name,ttl_room,ttl_bathroom,aircond,wifi,washing,cooking,homestay_rate,)
+                #' ORDER BY id ASC'
+            ).fetchall()
+            return render_template('dashboard/search_property_guest.html', properties=properties)
+    
+    return render_template('dashboard/search_property_guest.html', properties=properties)
                 
 
 
