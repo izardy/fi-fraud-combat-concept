@@ -268,7 +268,6 @@ def manage_scammer_user():
     return render_template('app/manage-scammer.html', scammers=scammers)
 
 # [EDIT CONTRIBUTED LIST]
-
 def get_scammer(id):
     scammer = get_db().execute(
         'SELECT *'
@@ -372,7 +371,7 @@ def scammer_update(id):
                 )
 
             db.commit()
-            return redirect(url_for('main.manage_scammer'))
+            return redirect(url_for('main.manage_scammer_user'))
 
     return render_template('app/scammer-update.html', scammer_update=scammer_update, comments=comments)
 
@@ -491,6 +490,46 @@ def search_scammer():
     
     # GET request - show empty results initially
     return render_template('app/search-scammer.html', scammers=[])
+
+#################################################################################### [VIEW SCAMMER - USER]
+
+# [VIEW INFO]
+
+@bp.route('/<int:id>/scammer_info', methods=('POST', 'GET'))
+@login_required
+def scammer_info(id):
+    db = get_db()
+    scammer_info = get_scammer(id)
+
+    # Fetch comments for this scammer id
+    comments = db.execute(
+        'SELECT user_id, content, created_at FROM comments WHERE post_id = ? ORDER BY created_at DESC',
+        (id,)
+    ).fetchall()
+
+    if request.method == 'POST':
+
+        user_id = g.user['username']
+        new_comment = request.form['new_comment']
+
+        error = None
+
+        if error is not None:
+            flash(error)
+        
+        else:
+            
+            # Insert new comment if provided
+            if new_comment:
+                db.execute(
+                    'INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)',
+                    (id, user_id, new_comment)
+                )
+
+            db.commit()
+            return redirect(url_for('main.scammer_info', id=id))
+
+    return render_template('app/scammer-info.html', scammer_info=scammer_info, comments=comments)
 
                 
 #################################################################################### [TRANSFER]
