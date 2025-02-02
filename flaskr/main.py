@@ -254,13 +254,6 @@ def add_scammer():
     
     return render_template('app/add-scammer.html')
 
-#################################################################################### [FIND SCAMMER]
-
-@bp.route('/search_scammer', methods=['POST', 'GET'])
-@login_required
-def search_scammer():    
-    return render_template('app/search-scammer.html')
-
 #################################################################################### [MANAGE SCAMMER - USER]
 
 # [SHOW CONTRIBUTED LIST]
@@ -460,64 +453,46 @@ def admin_update(id):
 
 @bp.route('/search_scammer', methods=('GET', 'POST'))
 @login_required
-
 def search_scammer():
-
-    db = get_db()
-    properties = db.execute(
-        'SELECT *'
-        ' FROM scammer'
-        #' ORDER BY id ASC'
-    ).fetchall()
-
-
     if request.method == 'POST':
-        scammerName =request.form['search_by_name']
-        bankAccount =request.form['search_by_acc_no']
-        contact =request.form['search_by_contact_info']
-        facebookID =request.form['search_by_facebook_id']
-        tiktokID =request.form['search_by_tiktok_id']
-        twitterID =request.form['search_by_twitter_id']
-        instagramID =request.form['search_by_instagram_id']
-        telegramID =request.form['search_by_telegram_id']
-        platform ='%'+(request.form['search_by_platform'])+'%'
+        # Get search parameters from form
+        search_params = {
+            'scammerName': request.form.get('search_by_name', ''),
+            'bankAccount': request.form.get('search_by_acc_no', ''),
+            'contact': request.form.get('search_by_contact_info', ''),
+            'facebookID': request.form.get('search_by_facebook_id', ''),
+            'tiktokID': request.form.get('search_by_tiktok_id', ''),
+            'twitterID': request.form.get('search_by_twitter_id', ''),
+            'instagramID': request.form.get('search_by_instagram_id', ''),
+            'telegramID': request.form.get('search_by_telegram_id', ''),
+            'platform': request.form.get('search_by_platform', '')
+        }
 
-        error = None
+        # Build query dynamically
+        query = 'SELECT * FROM scammer WHERE 1=0'
+        params = []
+        
+        for field, value in search_params.items():
+            if value:
+                if field == 'platform':
+                    query += f' OR {field} LIKE ?'
+                    params.append(f'%{value}%')
+                else:
+                    query += f' OR {field} LIKE ?'
+                    params.append(f'%{value}%')
 
-        if not scammerName:
-            scammerName = ''
-        if not bankAccount:
-            bankAccount = ''
-        if not contact:
-            contact = ''
-        if not facebookID:
-            facebookID = ''
-        if not tiktokID:
-            tiktokID = ''
-        if not twitterID:
-            twitterID = ''
-        if not instagramID:
-            instagramID = ''
-        if not telegramID:
-            telegramID = ''
-        if not platform:
-            platform = ''
-        if error is not None:
-            flash(error)                
+        db = get_db()
+        if params:  # Only search if at least one parameter is provided
+            scammers = db.execute(query, params).fetchall()
         else:
-            db = get_db()
-            properties = db.execute(
-                'SELECT id,property_name,property_status,property_address,stateInput,districtInput,ttl_room,ttl_bathroom,aircond,wifi,washing,cooking,homestay_rate,phone'
-                ' FROM property'
-                 ' WHERE (stateInput = ? OR districtInput = ? OR property_name like :property_name) AND (ttl_room = ? OR ttl_bathroom = ? OR aircond = ? OR wifi = ? OR washing = ? OR cooking = ?) AND (homestay_rate <= ?)',(stateInput,districtInput,property_name,ttl_room,ttl_bathroom,aircond,wifi,washing,cooking,homestay_rate,)
-                #' ORDER BY id ASC'
-            ).fetchall()
-            return render_template('dashboard/search_property_guest.html', properties=properties)
+            scammers = []  # Return empty list if no search parameters
+            
+        return render_template('app/search-scammer.html', scammers=scammers)
     
-    return render_template('dashboard/search_property_guest.html', properties=properties)
+    # GET request - show empty results initially
+    return render_template('app/search-scammer.html', scammers=[])
+
                 
-
-
 #################################################################################### [TRANSFER]
 
 @bp.route('/transfer', methods=['POST', 'GET'])
