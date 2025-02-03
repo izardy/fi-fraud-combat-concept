@@ -16,10 +16,23 @@
             - [ ] *To notify bank on changes on cif info update (via email)*
         - *On situation where potential scam/fraud victiom to initiate money transfer*
             - [ ] *Rule based approach to be implemented at first layer*
+                - [x] Identify platforms where public share scam
+                - [x] Prepare data entry platform
+                - [ ] Manual data entry for this info 
             - [ ] *ML based approach to be implemented at second layer*
+                - [x] Obtain data
+                - [x] Build ML model
+                - [ ] Train ML model
+                - [ ] Test ML model
+                - [ ] Deploy ML model     
             - [ ] *Notification within the apps*
+                - [ ] Mock UI development
             - [ ] *Notification at customer phone number*
+                - [ ] Identify 3rd party service API
+                - [ ] Triggered upon first layer net activated
             - [ ] *Notification to bank on this alert (via email)*
+                - [ ] Setup email server
+                - [ ] Triggered auto email sent    
 
     - Issue 2 & 3
         - *To establish a repository of scam/fraud/mule account*
