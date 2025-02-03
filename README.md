@@ -13,15 +13,16 @@
         - *On situation where mule account about to be created*
             - [ ] *Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.*
             - [ ] *To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call*
+            - [ ] *To notify bank on changes on cif info update (via email)*
         - *On situation where potential scam/fraud victiom to initiate money transfer*
             - [ ] *Rule based approach to be implemented at first layer*
             - [ ] *ML based approach to be implemented at second layer*
             - [ ] *Notification within the apps*
             - [ ] *Notification at customer phone number*
-            - [ ] *Notification to bank on this alert*
+            - [ ] *Notification to bank on this alert (via email)*
 
     - Issue 2 & 3
-        - *To establish a repository where scam/fraud/mule account*
+        - *To establish a repository of scam/fraud/mule account*
             - [ ] *Visualized data of the above information*
             - [x] *Enablement for additional data input from external contributors*
             - [ ] *Enablement of API call for the data*
