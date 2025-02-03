@@ -30,8 +30,8 @@
                                      <input name="scammer_name" id="scammer_name" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" placeholder="scammer name/alias" value="{{request.form['scammer_name'] or scammer_info['scammerName']}}" readonly>
                                 </div>
                                 <div class="col-sm-4 mt-2">
-                                     <label for="contact_info" class="mb-0" style="color: #a8adb5; font-size: 12px">Contact Info :</label>
-                                     <input name="contact_info" id="contact_info" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['contact_info'] or scammer_info['contact']}}" placeholder="scammer phone/email" readonly>
+                                     <label for="phone" class="mb-0" style="color: #a8adb5; font-size: 12px">Phone No. :</label>
+                                     <input name="phone" id="phone" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['phone'] or scammer_info['phone']}}" placeholder="scammer phone no." readonly>
                                 </div>
                                 <div class="col-sm-4 mt-2">
                                      <label for="reported_date" class="mb-0" style="color: #a8adb5; font-size: 12px">Reported Date :</label>
@@ -56,8 +56,8 @@
  
                              <div class="row mt-3">
                                  <div class="col-sm-4 mt-2">
-                                     <label for="platform" class="mb-0" style="color: #a8adb5; font-size: 12px">Platform :</label>
-                                     <input name="platform" id="platform" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['platform'] or scammer_info['platform']}}" readonly>
+                                     <label for="email" class="mb-0" style="color: #a8adb5; font-size: 12px">Email. :</label>
+                                     <input name="email" id="email" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['email'] or scammer_info['email']}}" readonly>
                                   </div>
                                  <div class="col-sm-4 mt-2">
                                     <label for="tiktok" class="mb-0" style="color: #a8adb5; font-size: 12px">Tik Tok ID :</label>
@@ -114,7 +114,7 @@
                                             <h6 class="card-subtitle mb-2 text-muted" style="color: #a8adb5; font-size: 12px">
                                               {{ comment['user_id'] }} - {{ comment['created_at'] }}
                                             </h6>
-                                            <p class="card-text" style="color: #a8adb5; font-size: 12px">{{ comment['content'] }}</p>
+                                            <p class="card-text" style="color: #a8adb5; font-size: 12px">{{ comment['comment'] }}</p>
                                           </div>
                                         </div>
                                       </li>

@@ -224,14 +224,14 @@ def add_scammer():
 
     if request.method == 'POST':
         scammerName = request.form['scammer_name']
-        contact = request.form['contact_info']
+        phone = request.form['phone']
         reportedDate = request.form['reported_date']
         bankAccount = request.form['bank_account']
         bankName = request.form['bank_name']
         bankAccountName = request.form['bank_account_name']
     
 
-        platform = request.form['platform']
+        email = request.form['email']
 
         tiktokID = request.form['tiktok']
         facebookID = request.form['facebook']
@@ -245,10 +245,10 @@ def add_scammer():
         db = get_db()
         db.execute(
             """
-            INSERT INTO scammer (scammerName, contact, reporterID, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, 
-            platform, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO scammer (scammerName, phone, reporterID, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, 
+            email, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
-            (scammerName, contact, reporterID, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, platform, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3)
+            (scammerName, phone, reporterID, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, email, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3)
         )
         db.commit()
     
@@ -290,19 +290,19 @@ def scammer_update(id):
 
     # Fetch comments for this scammer id
     comments = db.execute(
-        'SELECT user_id, content, created_at FROM comments WHERE post_id = ? ORDER BY created_at DESC',
+        'SELECT user_id, comment, created_at FROM comments WHERE scammer_id = ? ORDER BY created_at DESC',
         (id,)
     ).fetchall()
 
     if request.method == 'POST':
         scammerName = request.form['scammer_name']
-        contact = request.form['contact_info']
+        phone = request.form['phone']
         reportedDate = request.form['reported_date']
         bankAccount = request.form['bank_account']
         bankName = request.form['bank_name']
         bankAccountName = request.form['bank_account_name']
     
-        platform = request.form['platform']
+        email = request.form['email']
         tiktokID = request.form['tiktok']
         facebookID = request.form['facebook']
         twitterID = request.form['twitter']
@@ -320,7 +320,7 @@ def scammer_update(id):
 
         if not scammerName:
             error = '!'
-        if not contact:
+        if not phone:
             error = '!'
         if not reportedDate:
             error = '!'
@@ -331,7 +331,7 @@ def scammer_update(id):
         if not bankAccountName:
             error = '!'
 
-        if not platform:
+        if not email:
             error = '!'
         if not tiktokID:
             error = '!'
@@ -357,16 +357,16 @@ def scammer_update(id):
             
             # Update scammer info
             db.execute(
-                'UPDATE scammer SET scammerName = ?, contact = ?, reportedDate = ?, recordedDate = ?, bankAccount = ?, bankName = ?, bankAccountName = ?, platform = ?, tiktokID = ?, facebookID = ?,'
+                'UPDATE scammer SET scammerName = ?, phone = ?, reportedDate = ?, recordedDate = ?, bankAccount = ?, bankName = ?, bankAccountName = ?, email = ?, tiktokID = ?, facebookID = ?,'
                 'twitterID = ?, instagramID = ?, telegramID = ?, sourceReport1 = ?, sourceReport2 = ?, sourceReport3 = ?'
                 ' WHERE scammerID = ?',
-                (scammerName, contact, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, platform, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3, id)
+                (scammerName, phone, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, email, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3, id)
             )
 
             # Insert new comment if provided
             if new_comment:
                 db.execute(
-                    'INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)',
+                    'INSERT INTO comments (scammer_id, user_id, comment) VALUES (?, ?, ?)',
                     (id, user_id, new_comment)
                 )
 
@@ -377,7 +377,6 @@ def scammer_update(id):
 
 
 #################################################################################### [MANAGE SCAMMER - ADMIN]
-
 
 @bp.route('/manage_scammer_admin', methods=['POST', 'GET'])
 @login_required
@@ -458,13 +457,13 @@ def search_scammer():
         search_params = {
             'scammerName': request.form.get('search_by_name', ''),
             'bankAccount': request.form.get('search_by_acc_no', ''),
-            'contact': request.form.get('search_by_contact_info', ''),
+            'phone': request.form.get('search_by_phone_info', ''),
             'facebookID': request.form.get('search_by_facebook_id', ''),
             'tiktokID': request.form.get('search_by_tiktok_id', ''),
             'twitterID': request.form.get('search_by_twitter_id', ''),
             'instagramID': request.form.get('search_by_instagram_id', ''),
             'telegramID': request.form.get('search_by_telegram_id', ''),
-            'platform': request.form.get('search_by_platform', '')
+            'email': request.form.get('search_by_email', '')
         }
 
         # Build query dynamically
@@ -473,7 +472,7 @@ def search_scammer():
         
         for field, value in search_params.items():
             if value:
-                if field == 'platform':
+                if field == 'email':
                     query += f' OR {field} LIKE ?'
                     params.append(f'%{value}%')
                 else:
@@ -503,7 +502,7 @@ def scammer_info(id):
 
     # Fetch comments for this scammer id
     comments = db.execute(
-        'SELECT user_id, content, created_at FROM comments WHERE post_id = ? ORDER BY created_at DESC',
+        'SELECT user_id, comment, created_at FROM comments WHERE scammer_id = ? ORDER BY created_at DESC',
         (id,)
     ).fetchall()
 
@@ -522,7 +521,7 @@ def scammer_info(id):
             # Insert new comment if provided
             if new_comment:
                 db.execute(
-                    'INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)',
+                    'INSERT INTO comments (scammer_id, user_id, comment) VALUES (?, ?, ?)',
                     (id, user_id, new_comment)
                 )
 

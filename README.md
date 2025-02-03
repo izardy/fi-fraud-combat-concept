@@ -38,7 +38,7 @@
         - *To establish a repository of scam/fraud/mule account*
             - [ ] *Visualized data of the above information*
             - [x] *Enablement for additional data input from external contributors*
-            - [ ] *Enablement of API call for the data*
+            - [x] *Enablement of API call for the scammer data*
 
 ### System Architecture : TOGAF BDAT Approach
 
