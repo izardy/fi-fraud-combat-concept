@@ -48,7 +48,11 @@ def register():
 
         db = get_db()
         error = None
-
+        
+        productID=1
+        productNAME='Savings Account'
+        accountID='8010-00000000-000'
+        
         if not email:
             error = 'Email is required.'
         elif not password:
@@ -60,12 +64,12 @@ def register():
                 db.execute(
                     """INSERT INTO cif 
                     (username, password, firstname, lastname, gender, dob,
-                     address1, address2, postcode, area, state) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                     address1, address2, postcode, area, state, productID, productNAME, accountID) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                     (email, generate_password_hash(password),
                      defaults['firstname'], defaults['lastname'], defaults['gender'], defaults['dob'],
                      defaults['address1'], defaults['address2'], defaults['postcode'],
-                     defaults['area'], defaults['state'])
+                     defaults['area'], defaults['state'], productID, productNAME, accountID)
                 )
                 db.commit()
             except db.IntegrityError:
@@ -80,7 +84,7 @@ def register():
     return render_template('auth/login.html')
 
 
-#################################################################################### [PASSWORD VERFICATION STATE]
+#################################################################################### [PASSWORD VERIFICATION STATE]
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
