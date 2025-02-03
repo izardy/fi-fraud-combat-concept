@@ -138,7 +138,8 @@ def registered_users():
         ).fetchall()
         return render_template('auth/registered-users.html', users=users)
     else:
-        return redirect(url_for('index'))
+        id = g.user['id']
+        return redirect(url_for('main.index'))
     
 #################################################################################### [UPDATE USER PASSWORD]
 

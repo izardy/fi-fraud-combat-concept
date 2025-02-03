@@ -116,6 +116,7 @@ def index():
             date=transaction['date'],
             description=transaction['description'],
             type=transaction['transactionTYPE'],
+            category=transaction['category'],
             amount=float(transaction['Amount']),  # Ensure amount is float
             status=transaction['status'])
             
@@ -388,6 +389,8 @@ def manage_scammer_admin():
         ).fetchall()
         
         return render_template('app/manage-scammer.html', scammers=scammers)
+    else:
+        return redirect(url_for('main.index'))
 
 @bp.route('/<int:id>/admin_update', methods=('GET', 'POST'))
 def admin_update(id):
@@ -444,8 +447,11 @@ def admin_update(id):
                 )
                 db.commit()
                 return redirect(url_for('auth.registered_users'))
-
-    return render_template('auth/admin-update.html', users=users)
+    
+        return render_template('auth/admin-update.html', users=users)
+    
+    else :
+        return redirect(url_for('main.index'))
 
 #################################################################################### [SCAMMER SEARCH]
 

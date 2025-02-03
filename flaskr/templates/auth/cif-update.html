@@ -13,67 +13,68 @@
           <div class="card">
               <div class="card-body">
           <h5 class="card-title text-primary">User Information Update</h5>
+          
           <form action="" method="post">
             <!-- First Row -->
             <div class="row">
-              <div class="col-6 col-md-4 mb-3">
-                <label class="form-label text-muted">First Name</label>
-                <input type="text" class="form-control" value="{{ request.form['firstname'] or user['firstname'] }}" readonly>
+              <div class="col-sm-4 mt-2">
+                <label style="color: #a8adb5; font-size: 12px">First Name</label>
+                <input type="text" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['firstname'] or user['firstname'] }}" readonly>
               </div>
-              <div class="col-6 col-md-4 mb-3">
-                <label class="form-label text-muted">Last Name</label>
-                <input type="text" class="form-control" value="{{ request.form['lastname'] or user['lastname'] }}" readonly>
+              <div class="col-sm-4 mt-2">
+                <label style="color: #a8adb5; font-size: 12px">Last Name</label>
+                <input type="text" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['lastname'] or user['lastname'] }}" readonly>
               </div>
-              <div class="col-6 col-md-4 mb-3">
-                <label class="form-label text-muted">Gender</label>
-                <input type="text" class="form-control" value="{{ request.form['gender'] or user['gender'] }}" readonly>
+              <div class="col-sm-4 mt-2">
+                <label style="color: #a8adb5; font-size: 12px">Gender</label>
+                <input type="text" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['gender'] or user['gender'] }}" readonly>
               </div>
             </div>
             
             <!-- Second Row -->
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label class="form-label">Phone</label>
-                <input name="phone" type="tel" class="form-control" value="{{ request.form['phone'] or user['phone'] }}" required>
+                <label style="color: #a8adb5; font-size: 12px">Phone</label>
+                <input name="phone" type="tel" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['phone'] or user['phone'] }}" required>
               </div>
               <div class="col-12 col-md-6 mb-3">
-                <label class="form-label">Email</label>
-                <input name="email" type="email" class="form-control" value="{{ request.form['email'] or user['email'] }}" required>
+                <label style="color: #a8adb5; font-size: 12px">Email</label>
+                <input name="email" type="email" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['email'] or user['email'] }}" required>
               </div>
             </div>
             
             <!-- Address -->
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label class="form-label">Address 1</label>
-                <input name="address1" type="text" class="form-control" value="{{ request.form['address1'] or user['address1'] }}" required>
+                <label style="color: #a8adb5; font-size: 12px">Address 1</label>
+                <input name="address1" type="text" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['address1'] or user['address1'] }}" required>
               </div>
               <div class="col-12 col-md-6 mb-3">
-                <label class="form-label">Address 2</label>
-                <input name="address2" type="text" class="form-control" value="{{ request.form['address2'] or user['address2'] }}" required>
+                <label style="color: #a8adb5; font-size: 12px">Address 2</label>
+                <input name="address2" type="text" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['address2'] or user['address2'] }}" required>
               </div>
             </div>
 
             <!-- Additional Details -->
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label class="form-label">Postcode</label>
-                <input name="postcode" type="number" class="form-control" value="{{ request.form['postcode'] or user['postcode'] }}" required>
+                <label style="color: #a8adb5; font-size: 12px">Postcode</label>
+                <input name="postcode" type="number" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['postcode'] or user['postcode'] }}" required>
               </div>
               <div class="col-12 col-md-6 mb-3">
-                <label class="form-label">Area</label>
-                <input name="area" type="text" class="form-control" value="{{ request.form['area'] or user['area'] }}" required>
+                <label style="color: #a8adb5; font-size: 12px">Area</label>
+                <input name="area" type="text" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['area'] or user['area'] }}" required>
               </div>
             </div>
 
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <label class="form-label">State</label>
-                <input name="state" type="text" class="form-control" value="{{ request.form['state'] or user['state'] }}" required>
+                <label style="color: #a8adb5; font-size: 12px">State</label>
+                <input name="state" type="text" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['state'] or user['state'] }}" required>
               </div>
               <div class="col-12 col-md-6 mb-3">
-                <label class="form-label">Country</label>
-                <input name="country" type="text" class="form-control" value="{{ request.form['country'] or user['country'] }}" required>
+                <label style="color: #a8adb5; font-size: 12px">Country</label>
+                <input name="country" type="text" class="form-control bg-white" style="color: #a8adb5; height: 30px; font-size: 12px" value="{{ request.form['country'] or user['country'] }}" required>
               </div>
             </div>
 

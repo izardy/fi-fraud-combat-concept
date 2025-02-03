@@ -27,6 +27,7 @@
                                         <th>Date</th>
                                         <th>Description</th>
                                         <th>Type</th>
+                                        <th>Category</th>
                                         <th>Amount (MYR)</th>
                                         <th>Status</th>
                                     </tr>
@@ -45,7 +46,7 @@
         <div class="row">
 
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card" style="height: 250px;">
                     <div class="card-body">
                         <h5 class="card-title text-primary">Account Balance</h5>
                         <div class="mt-4">
@@ -69,7 +70,7 @@
             </div>
 
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card" style="height: 250px;">
                     <div class="card-body">
                         <h5 class="card-title text-primary">Monthly Spending</h5>
                         <div class="d-flex justify-content-between align-items-center">
@@ -80,7 +81,7 @@
             </div>
 
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card" style="height: 250px;">
                     <div class="card-body">
                         <h5 class="card-title text-primary">Category Spending</h5>
                         <div class="d-flex justify-content-between align-items-center">
@@ -139,6 +140,7 @@
                     <td>${formatDate(transaction.date)}</td>
                     <td>${transaction.type}</td>
                     <td>${transaction.description}</td>
+                    <td>${transaction.category}</td>
                     <td class="${transaction.amount < 0 ? 'text-danger' : 'text-success'}">
                         ${formatAmount(transaction.amount)}
                     </td>
