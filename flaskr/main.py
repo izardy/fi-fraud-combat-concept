@@ -70,7 +70,7 @@ def index():
     productNAME=g.user['productNAME']
 
     query_account_balance = "SELECT accountBAL FROM 'productID(1)-transactions'"+ " WHERE accountID = '"+ accountID + "' ORDER BY ROWID DESC LIMIT 1"
-    query_last_5_transactions = "SELECT * FROM 'productID(1)-transactions'"+ " WHERE accountID = '"+ accountID + "' ORDER BY ROWID DESC LIMIT 5"
+    query_last_5_transactions = "SELECT * FROM 'productID(1)-transactions'"+ " WHERE accountID = '"+ accountID + "' ORDER BY ROWID DESC LIMIT 10"
     query_total_monthly_transactions = """
     WITH RECURSIVE 
     dates(date) AS (

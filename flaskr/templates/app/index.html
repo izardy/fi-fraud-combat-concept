@@ -14,8 +14,8 @@
 
 
     <div class="container aligned-middle mt-5 overflow-auto"  scrolling="yes" frameborder="0" style=" width: 100%; height: calc(101vh - 66px);  overflow: auto; ">
+        
         <div class="row">
-
             <div class="col-md-12 mb-4">
                 <div class="card">
                     <div class="card-body">
@@ -31,7 +31,7 @@
                                         <th>Status</th>
                                     </tr>
                                 </thead>
-                                <tbody id="transactionsList">
+                                <tbody id="transactionsList" style="color: #a8adb5; font-size: 12px;">
                                     <!-- Transactions will be inserted here -->
                                 </tbody>
                             </table>
@@ -39,7 +39,10 @@
                     </div>
                 </div>
             </div>
+        </div>
             
+
+        <div class="row">
 
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -50,8 +53,7 @@
                                 <span class="text-muted mb-1">Available Balance (MYR)</span>
                                 <h2 class="mb-0 fw-bold" style="color: #a8adb5">{{ account_balance }}</h2>
                             </div>
-                        </div>
-                        
+                        </div>                        
                         <div class="mt-4">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-muted mb-1">Account Type</span>
@@ -65,7 +67,6 @@
                     </div>
                 </div>
             </div>
-               
 
             <div class="col-md-4 mb-4">
                 <div class="card">
@@ -77,20 +78,21 @@
                     </div>
                 </div>
             </div>
-            
-                           
+
             <div class="col-md-4 mb-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title text-primary">Category Spending</h5>
                         <div class="d-flex justify-content-between align-items-center">
-                            <canvas id="categorySpendingChart"></canvas>
+                            <canvas id="categorySpendingChart" style="max-width: 300px; max-height: 150px;"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+            
+
     </div>
 
 
@@ -120,7 +122,7 @@
             // Function to get status cell style
             function getStatusStyle(status) {
                 const styles = {
-                    'Completed': 'background-color: #4CAF50; color: white;',
+                    'Completed': 'background-color: #27AE60; color: white;',
                     'Pending': 'background-color: #ffc107; color: black;',
                     'Failed': 'background-color: #dc3545; color: white;'
                 };
@@ -167,17 +169,19 @@
                 datasets: [{
                     data: pct_data, // Percentages of spending
                     backgroundColor: [
-                                        '#2196F3',  // Material Blue
-                                        '#F44336',  // Material Red
-                                        '#4CAF50',  // Material Green
-                                        '#FFC107',  // Material Amber
-                                        '#9C27B0',  // Material Purple
-                                        '#FF5722',  // Material Deep Orange
-                                        '#00BCD4',  // Material Cyan
-                                        '#E91E63',  // Material Pink
-                                        '#673AB7',  // Material Deep Purple
-                                        '#8BC34A'   // Material Light Green
-                                    ]
+                                            '#3498DB',  // Soft Blue
+                                            '#27AE60',  // Soft Green
+                                            '#8E44AD',  // Soft Purple
+                                            '#D35400',  // Soft Orange
+                                            '#16A085',  // Soft Teal
+                                            '#2980B9',  // Ocean Blue
+                                            '#8E44AD',  // Muted Purple
+                                            '#C0392B',  // Soft Red
+                                            '#1ABC9C',  // Mint
+                                            '#E67E22'   // Warm Orange
+                                        ]
+
+
 
 ,
                     borderWidth: 1
@@ -189,11 +193,13 @@
                 data: data,
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    width: 300,  // Add width
+                    height: 300, // Add height
                     layout: {
                         padding: {
                             top: 0,    // Reduce top padding to move chart up
-                            bottom: 150 // Add bottom padding to create space below
+                            bottom: 0 // Add bottom padding to create space below
                         }
                     },
                     plugins: {
@@ -234,36 +240,23 @@
     document.addEventListener('DOMContentLoaded', function() {
         const ctx = document.getElementById('monthlySpendingChart').getContext('2d');
         
-
-        // For a string that looks like '["item1", "item2", "item3"]'
         const stringList = document.querySelector('#data_months_list').value;
         const months = stringList.split(',');
 
-
-        // Get last 12 months
-        //const months = JSON.parse(document.querySelector('#data_months_list').value);
-        //const months = [];
-        //for (let i = 11; i >= 0; i--) {
-          //  const d = new Date();
-           // d.setMonth(d.getMonth() - i);
-            //months.push(d.toLocaleString('default', { month: 'short' }));
-        //}
-    
-        // Sample expenses data
-        // const expenses = [3200.45, 2890.30, 3450.20, 2950.75, 3100.90, 2780.50, 2780.50, 3100.90, 2780.50, 2780.50, 2780.50, 2780.50];
         const expenses = JSON.parse(document.querySelector('#data_total_monthly_transactions_list').value);
 
-    
         new Chart(ctx, {
-            type: 'bar',
+            type: 'line', // Changed from 'bar' to 'line'
             data: {
                 labels: months,
                 datasets: [{
                     label: 'Monthly Expenses',
                     data: expenses,
-                    backgroundColor: '#2196F3',
-                    borderColor: '#2196F3',
-                    borderWidth: 1
+                    backgroundColor: 'rgba(41, 128, 185, 0.2)', // Added transparency for area under the line
+                    borderColor: '#2980B9',
+                    borderWidth: 2, // Increased for better visibility
+                    tension: 0.3, // Adds slight curve to the line
+                    fill: true // Fills area under the line
                 }]
             },
             options: {
@@ -294,12 +287,13 @@
             }
         });
     });
+
     </script>
 
     <!-- Add this style section in your head tag -->
     <style>
     .card-body {
-        height: 250px;  /* Adjust this value as needed */
+        height: auto;  /* Adjust this value as needed */
     }
     </style>
 

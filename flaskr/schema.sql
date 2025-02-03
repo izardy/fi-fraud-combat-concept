@@ -80,3 +80,8 @@ CREATE TABLE "scammer" (
 	"reporterID"	INTEGER,
 	PRIMARY KEY("scammerID" AUTOINCREMENT)
 );
+
+--UPDATE 'productID(1)-transactions'
+--SET status = (SELECT COALESCE(status, 'Completed')
+  --                 FROM 'productID(1)-transactions'
+    --               WHERE status IS NULL);
