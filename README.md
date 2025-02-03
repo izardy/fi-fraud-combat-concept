@@ -23,7 +23,7 @@
     - Issue 2 & 3
         - *To establish a repository where scam/fraud/mule account*
             - [ ] *Visualized data of the above information*
-            - [ ] *Enablement for additional data input from external contributors*
+            - [x] *Enablement for additional data input from external contributors*
             - [ ] *Enablement of API call for the data*
 
 ### System Architecture : TOGAF BDAT Approach
