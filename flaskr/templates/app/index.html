@@ -16,6 +16,41 @@
     <div class="container aligned-middle mt-5 overflow-auto"  scrolling="yes" frameborder="0" style=" width: 100%; height: calc(101vh - 66px);  overflow: auto; ">
         
         <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Payment</h5>
+                         <a class="nav-item nav-link" href="{{ url_for('main.transfer') }}"><img src="{{ url_for('static', filename='img/payments.svg') }}" alt=""/></a>                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body"> 
+                        <h5 class="card-title text-primary">Manage Account</h5>
+                        <a class="nav-item nav-link" href="{{ url_for('auth.user_update', id=g.user['id']) }}"><img src="{{ url_for('static', filename='img/manage_account.svg') }}" alt=""/></a>                                             
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Report Scam</h5>
+                        <a class="nav-item nav-link" href="{{ url_for('main.add_scammer') }}"><img src="{{ url_for('static', filename='img/person_alert.svg') }}" alt=""/></a>                                                                    
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Kill Switch</h5>
+                        <a class="nav-item nav-link" href=""><img src="{{ url_for('static', filename='img/kill_switch.svg') }}" alt=""/></a>                                                                                           
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-12 mb-4">
                 <div class="card">
                     <div class="card-body">
@@ -48,7 +83,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card" style="height: 250px;">
                     <div class="card-body">
-                        <h5 class="card-title text-primary">Al-Awfar Account</h5>
+                        <h5 class="card-title text-primary">Al-Awfar Account 1</h5>
                         <div class="mt-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-muted mb-1">Available Balance (MYR)</span>
@@ -72,7 +107,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card" style="height: 250px;">
                     <div class="card-body">
-                        <h5 class="card-title text-primary">Al-Awfar Account</h5>
+                        <h5 class="card-title text-primary">Al-Awfar Account 2</h5>
                         <div class="mt-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-muted mb-1">Available Balance (MYR)</span>
@@ -96,7 +131,7 @@
             <div class="col-md-4 mb-4">
                 <div class="card" style="height: 250px;">
                     <div class="card-body">
-                        <h5 class="card-title text-primary">Al-Awfar Account</h5>
+                        <h5 class="card-title text-primary">Al-Awfar Account 3</h5>
                         <div class="mt-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-muted mb-1">Available Balance (MYR)</span>
