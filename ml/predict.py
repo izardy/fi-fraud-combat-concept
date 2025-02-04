@@ -2,6 +2,9 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import pickle
+import sqlite3
+from datetime import datetime
+import os
 
 df=pd.read_parquet('test-sample.parquet')
 
@@ -33,4 +36,21 @@ y_pred = sv.predict(X)
 
 prediction=pd.merge(pd.DataFrame(y_pred,columns=['isFraud']),pd.read_parquet('test-sample.parquet').drop(columns=['isFraud']),how='left',left_index=True,right_index=True)
 prediction=prediction[prediction['isFraud']==1]
-prediction.to_csv('suspicious-cif.csv',index=False)
+
+prediction1=prediction[['nameOrig']].rename(columns={'nameOrig':'scammerName'})
+prediction1['flagSource']='Machine Learning'
+
+prediction2=prediction[['nameDest']].rename(columns={'nameDest':'scammerName'})
+prediction2['flagSource']='Machine Learning'
+
+prediction1['recordedDate'] = datetime.now().strftime("%Y-%m-%dT%H:%M")
+prediction2['recordedDate'] = datetime.now().strftime("%Y-%m-%dT%H:%M")
+
+#prediction.to_csv('suspicious-cif.csv',index=False)
+
+os.chdir('../')
+
+conn = sqlite3.connect('instance/flaskr.sqlite')
+
+prediction1.to_sql('scammer', conn, if_exists='append', index=False)
+prediction2.to_sql('scammer', conn, if_exists='append', index=False)
