@@ -1,0 +1,18 @@
+[Unit]
+Description=Flask App Start on Boot
+After=network.target
+
+[Service]
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/home/ec2-user/bimb-hacktive/
+Environment="PATH=/home/ec2-user/miniconda3/envs/hacktive/bin:/usr/bin"
+
+ExecStart=/bin/bash -c 'source /home/ec2-user/miniconda3/bin/activate hacktive && \
+   cd /home/ec2-user/bimb-hacktive && \
+   flask --app flaskr run --debug > /home/ec2-user/bimb-hacktive/flask_log.out 2>&1'
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
