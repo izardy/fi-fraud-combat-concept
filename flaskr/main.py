@@ -355,13 +355,15 @@ def scammer_update(id):
 
             # Get current datetime in format compatible with datetime-local
             recordedDate = datetime.now().strftime("%Y-%m-%dT%H:%M")
+
+            flagSource = "Crowd Sourcing Platform"
             
             # Update scammer info
             db.execute(
                 'UPDATE scammer SET scammerName = ?, phone = ?, reportedDate = ?, recordedDate = ?, bankAccount = ?, bankName = ?, bankAccountName = ?, email = ?, tiktokID = ?, facebookID = ?,'
-                'twitterID = ?, instagramID = ?, telegramID = ?, sourceReport1 = ?, sourceReport2 = ?, sourceReport3 = ?'
+                'twitterID = ?, instagramID = ?, telegramID = ?, sourceReport1 = ?, sourceReport2 = ?, sourceReport3 = ?, flagSource = ?'
                 ' WHERE scammerID = ?',
-                (scammerName, phone, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, email, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3, id)
+                (scammerName, phone, reportedDate, recordedDate, bankAccount, bankName, bankAccountName, email, tiktokID, facebookID, twitterID, instagramID, telegramID, sourceReport1, sourceReport2, sourceReport3, flagSource, id)
             )
 
             # Insert new comment if provided

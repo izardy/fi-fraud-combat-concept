@@ -27,15 +27,15 @@
                             <div class="row mt-3">
                                 <div class="col-sm-4 mt-2">
                                      <label for="scammer_name" class="mb-0" style="color: #a8adb5; font-size: 12px">Name/Alias :</label>
-                                     <input name="scammer_name" id="scammer_name" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" placeholder="scammer name/alias" value="{{request.form['scammer_name'] or scammer_update['scammerName']}}" required>
+                                     <input name="scammer_name" id="scammer_name" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" placeholder="scammer name/alias" value="{{request.form['scammer_name'] or scammer_update['scammerName']}}">
                                 </div>
                                 <div class="col-sm-4 mt-2">
                                      <label for="phone" class="mb-0" style="color: #a8adb5; font-size: 12px">Phone :</label>
-                                     <input name="phone" id="phone" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['phone'] or scammer_update['phone']}}" placeholder="scammer phone no." required>
+                                     <input name="phone" id="phone" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['phone'] or scammer_update['phone']}}" placeholder="scammer phone no.">
                                 </div>
                                 <div class="col-sm-4 mt-2">
                                      <label for="reported_date" class="mb-0" style="color: #a8adb5; font-size: 12px">Reported Date :</label>
-                                     <input name="reported_date" id="reported_date" type="datetime-local" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{scammer_update['reportedDate']}}"  readonly>
+                                     <input name="reported_date" id="reported_date" type="datetime-local" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{scammer_update['reportedDate']}}" >
                                 </div>
                              </div>
         
@@ -57,7 +57,7 @@
                              <div class="row mt-3">
                                 <div class="col-sm-4 mt-2">
                                     <label for="email" class="mb-0" style="color: #a8adb5; font-size: 12px">Email. :</label>
-                                    <input name="email" id="email" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['email'] or scammer_update['email']}}" readonly>
+                                    <input name="email" id="email" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['email'] or scammer_update['email']}}">
                                  </div>
                                  <div class="col-sm-4 mt-2">
                                     <label for="tiktok" class="mb-0" style="color: #a8adb5; font-size: 12px">Tik Tok ID :</label>
@@ -80,7 +80,7 @@
                                   </div>
                                   <div class="col-sm-4 mt-2">
                                      <label for="telegram" class="mb-0" style="color: #a8adb5; font-size: 12px">Telegram ID :</label>
-                                     <input name="telegram" id="telegram" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['telegram'] or scammer_update['telegramID']}}" placeholder="scammer id" required>
+                                     <input name="telegram" id="telegram" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['telegram'] or scammer_update['telegramID']}}" placeholder="scammer id">
                                   </div>
                               </div>
                
