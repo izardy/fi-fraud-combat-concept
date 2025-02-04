@@ -51,6 +51,7 @@
         <div class="collapse" id="transaction">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.transfer') }}">Transfer</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Transaction Admin</a></li>
             <!--li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Pay</a></li-->
             <!--li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Reload</a></li-->
           </ul>
@@ -70,7 +71,7 @@
             <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.search_scammer') }}">Search Scammer</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.add_scammer') }}">Add Scammer</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.manage_scammer_user') }}">User Editor</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.manage_scammer_admin') }}">Admin Editor</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url_for('main.manage_scammer_admin') }}">Scam Info Admin</a></li>
           </ul>
         </div>
       </li>
@@ -88,7 +89,7 @@
             <li class="nav-item"> <a class="nav-link" href="{{ url_for('auth.user_update', id=g.user['id']) }}">Profile</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ url_for('auth.password_update', id=g.user['id']) }}">Password</a></li>
             <!--li class="nav-item"> <a class="nav-link" href="/dropdowns.html">Security Question</a></li-->
-            <li class="nav-item"> <a class="nav-link" href="{{ url_for('auth.registered_users') }}">Admin</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url_for('auth.registered_users') }}">Manage Admin</a></li>
           </ul>
         </div>
       </li>
