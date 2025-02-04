@@ -442,7 +442,7 @@ def admin_update(id):
                 db = get_db()
                 db.execute(
                     'UPDATE cif SET email = ?, phone = ?, address1 = ?, address2 = ?, postcode = ?, area = ?, state = ?'
-                    ' WHERE id = ?',
+                    'WHERE id = ?',
                     (email, phone, address1, address2, postcode, area, state, id)
                 )
                 db.commit()
