@@ -55,15 +55,8 @@
 
                             <div class="row mt-3">
                                 <div class="col-sm-4 mt-2">
-                                    <label for="platform" class="mb-0" style="color: #a8adb5; font-size: 12px">Platform :</label>
-                                         <select name="platform" id="platform" class="form-control bg-white" style="border-width: 1px; border-style: solid; border-color: #999; color: #a8adb5; font-size: 12px; height: 30px; font-size: 12px">
-                                             <option value="">Select Platform</option>
-                                             <option value="whatsapp">WhatsApp</option>
-                                             <option value="telegram">Telegram</option>
-                                             <option value="facebook">Facebook</option>
-                                             <option value="instagram">Instagram</option>
-                                             <option value="other">Other</option>
-                                         </select>
+                                    <label for="email" class="mb-0" style="color: #a8adb5; font-size: 12px">Email. :</label>
+                                    <input name="email" id="email" type="text" class="form-control bg-white" style="color: #a8adb5; font-size: 12px; height: 30px;" value="{{request.form['email'] or scammer_update['email']}}" readonly>
                                  </div>
                                 <div class="col-sm-4 mt-2">
                                    <label for="tiktok" class="mb-0" style="color: #a8adb5; font-size: 12px">Tik Tok ID :</label>
