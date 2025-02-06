@@ -8,38 +8,33 @@
     - Issue 4 : No direct information sharing real-time event platform from other FI. 
 ### Propose Conceptual Solution
 - Based on the issues highlighted and performed gap analysis, a sandbox is proposed to demonstrate how the above might be able to counter.
-    - On situation where mule account about to be created
-        - [ ] Continuous check at account level on CIF (Customer Information File) updates i.e email address and sub-sequent activities check after the update to identify if the account being compromised.
-        - [ ] To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.
-        - [ ] To notify FI related operation team on suspicious update within CIF account.
-    - On situation where potential scam/fraud victiom to initiate money transfer
-      #### Establish a database which combined data of suspected mule/fraud/scam accounts from 3 different sources
-        - [ ] Rule based approach to be implemented at first layer (Source no.1)
-            - [ ] Existing rule based approach (i.e changes of email, too many transaction in a day, student/housewife status but have continuous multiple transaction in a day)
-            - [ ] SQL query suspected accounts based on the above logic/rule
-            - [ ] Ingest into scam/fraud/mule centralise database
-        - [ ] ML based approach to be implemented at second layer (Source no.2)
-            - [ ] Obtain data
-            - [ ] Build ML model
-            - [ ] Train ML model
-            - [ ] Test ML model
-            - [ ] Deploy ML model
-            - [ ] Ingest into scam/fraud/mule centralise database
-        - [ ] Public shared approach to be implemented at third layer (Source no.3)
-            - [ ] Identify platforms where public can share scam information
-            - [ ] Prepare data entry platform
-            - [ ] Manual data entry for this info
-            - [ ] Ingest into scam/fraud/mule centralise database
-      #### Monitoring suspected accounts
-         - [ ] Validation process
-             - [ ] Flag confirmed/suspected 
-         - [ ] API sharing
-             - [ ] Internally
-             - [ ] Externally 
-      #### Actions        
-         - [ ] Notification alert
-            - [ ] Internally
-            - [ ] Externally 
+  #### Establish a database which combined data of suspected mule/fraud/scam accounts from 3 different sources
+    - [ ] Rule based approach to be implemented at first layer (Source no.1)
+        - [ ] Existing rule based approach (i.e changes of email, too many transaction in a day, student/housewife status but have continuous multiple transaction in a day)
+        - [ ] SQL query suspected accounts based on the above logic/rule
+        - [ ] Ingest into scam/fraud/mule centralise database
+    - [ ] ML based approach to be implemented at second layer (Source no.2)
+        - [ ] Obtain data
+        - [ ] Build ML model
+        - [ ] Train ML model
+        - [ ] Test ML model
+        - [ ] Deploy ML model
+        - [ ] Ingest into scam/fraud/mule centralise database
+    - [ ] Public shared approach to be implemented at third layer (Source no.3)
+        - [ ] Identify platforms where public can share scam information
+        - [ ] Prepare data entry platform
+        - [ ] Manual data entry for this info
+        - [ ] Ingest into scam/fraud/mule centralise database
+  #### Monitoring suspected accounts
+     - [ ] Validation process
+         - [ ] Flag confirmed/suspected 
+     - [ ] API sharing
+         - [ ] Internally
+         - [ ] Externally 
+  #### Actions        
+     - [ ] Notification alert
+        - [ ] Internally
+        - [ ] Externally 
                 
 ### System Architecture : TOGAF BDAT Approach
 
