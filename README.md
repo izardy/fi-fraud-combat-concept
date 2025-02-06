@@ -1,5 +1,5 @@
-# Let's be HackTIVE !
-## Fraud Detection System : A Framework Conceptualization
+# Combat Fraud and Scam
+## A Framework Conceptualization
 ### Problem Statement
 - Issues highlighted in the existing process
     - Issue 1 : Scam/Fraud/Mule Account activities reported only after it happened
