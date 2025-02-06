@@ -55,4 +55,24 @@
      - [ ] ```conda active env``` or ```source env\path\bin```
      - [ ] ```git clone git@github.com:izardy/fi-fraud-combat-concept.git```
      - [ ] ```cd fi-fraud-combat-concept```
-     - [ ] ```pip install -r requirements.txt```   
+     - [ ] ```pip install -r requirements.txt```
+  #### Test Scam/Fraud Public Sharing Platform Approach
+     - [ ] ```flask --app flaskr run --debug```
+     - [ ] Check https://localhost:5000 to access the web apps
+     - [ ] All the shared data ingested into sqlite db via method3_public_contribution/instance/flaskr.sqlite (table name scammers)
+  #### Test ML 
+     - [ ] ```cd method2_machine_learning```
+     - [ ] ```python predict.py```
+     - [ ] The code will run and predict suspected fraud account using sample data as input
+     - [ ] Data of the fraud account ingested into sqlite db via method3_public_contribution/instance/flaskr.sqlite (table name scammers)
+  #### Test Rule Based 
+     - [ ] Based on dummy CIF and transaction data , we extract account information which  had changes in their email address 
+     - [ ] ```python rule-based.py```
+     - [ ] The code will run and filter account based on the applied rule
+     - [ ] Output data ingested into sqlite db via method3_public_contribution/instance/flaskr.sqlite (table name scammers)
+ 
+  ### Pull the Combined Data via API
+    - [ ] User need to login into the Flask app before can use the API
+    - [ ] https://localhost:5000/api/scammers
+           
+     
