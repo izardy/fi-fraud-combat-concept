@@ -53,4 +53,6 @@
      - [ ] Install Python3.10
      - [ ] Create env either by conda or pyenv
      - [ ] ```conda active env``` or ```source env\path\bin```
-     - [ ] ```git clone t   
+     - [ ] ```git clone git@github.com:izardy/fi-fraud-combat-concept.git```
+     - [ ] ```cd fi-fraud-combat-concept```
+     - [ ] ```pip install -r requirements.txt```   
