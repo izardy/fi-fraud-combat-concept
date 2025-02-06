@@ -46,3 +46,11 @@
 |4|Implementation of ML based approach upon transaction initialisation. | CBS| AWS SageMaker  | Scikit-Learn, Linux Server, Python3, Bash, Cron |
 |5|Notifications | Data created upon No.2 & 3 activities initiate | Whatsapp Web| Selenium, Ollama, Linux Server, Nvidia Cuda |
 |6|Scrape scam/fraud/mule acount from various sources & publish data in a platform, enable API and new data additional | Open source data| OSINT Platform | Linux Server, Python3, Bash, Cron, Cloudflare, Solr|
+
+### Using This Repo
+- Environment preparation
+  #### Installation
+     - [ ] Install Python3.10
+     - [ ] Create env either by conda or pyenv
+     - [ ] ```conda active env``` or ```source env\path\bin```
+     - [ ] ```git clone t   
