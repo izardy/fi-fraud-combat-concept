@@ -3,43 +3,44 @@
 ### Problem Statement
 - Issues highlighted in the existing process
     - Issue 1 : Scam/Fraud/Mule Account activities reported only after it happened
-    - Issue 2 : No preventive measure. Whereby notifcation in term of email to customers & bank
-    - Issue 3 : Bank only have latest updated records of scam/fraud information from PDRM. 
+    - Issue 2 : Lack of preventive measure i.e near real time monitoring on the latest scam informations for FI
+    - Issue 3 : FI only have latest updated records of scam/fraud information from governing institutions. 
     - Issue 4 : No direct information sharing real-time event platform from other FI. 
-
 ### Propose Conceptual Solution
-- Based on the issues highlighted and performed gap analysis, we want to built a sandbox to demonstrate how the above might be able to counter.
-    - Issue 1 & 2
-        - On situation where mule account about to be created
-            - [ ] Continuous check at account level on CIF updates i.e email address and sub-sequent activities after the update.
-            - [ ] To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call
-            - [ ] To notify bank on changes on cif info update (via email)
-        - On situation where potential scam/fraud victiom to initiate money transfer
-            - [ ] Rule based approach to be implemented at first layer
-                - [x] Identify platforms where public share scam
-                - [x] Prepare data entry platform
-                - [ ] Manual data entry for this info 
-            - [ ] ML based approach to be implemented at second layer
-                - [x] Obtain data
-                - [x] Build ML model
-                - [ ] Train ML model
-                - [ ] Test ML model
-                - [ ] Deploy ML model     
-            - [ ] Notification within the apps
-                - [ ] Mock UI development
-            - [ ] Notification at customer phone number
-                - [ ] Identify 3rd party service API
-                - [ ] Triggered upon first layer net activated
-            - [ ] Notification to bank on this alert (via email)
-                - [ ] Setup email server
-                - [ ] Triggered auto email sent    
-
-    - Issue 2 & 3
-        - To establish a repository of scam/fraud/mule account
-            - [ ] Visualized data of the above information
-            - [x] Enablement for additional data input from external contributors
-            - [x] Enablement of API call for the scammer data
-
+- Based on the issues highlighted and performed gap analysis, a sandbox is proposed to demonstrate how the above might be able to counter.
+    - On situation where mule account about to be created
+        - [ ] Continuous check at account level on CIF (Customer Information File) updates i.e email address and sub-sequent activities check after the update to identify if the account being compromised.
+        - [ ] To notify and confirm with clients on suspicious activities via SMS/Whatsapp/Phone Call.
+        - [ ] To notify FI related operation team on suspicious update within CIF account.
+    - On situation where potential scam/fraud victiom to initiate money transfer
+      #### Establish a database which combined data of suspected mule/fraud/scam accounts from 3 different sources
+        - [ ] Rule based approach to be implemented at first layer (Source no.1)
+            - [ ] Existing rule based approach (i.e changes of email, too many transaction in a day, student/housewife status but have continuous multiple transaction in a day)
+            - [ ] SQL query suspected accounts based on the above logic/rule
+            - [ ] Ingest into scam/fraud/mule centralise database
+        - [ ] ML based approach to be implemented at second layer (Source no.2)
+            - [ ] Obtain data
+            - [ ] Build ML model
+            - [ ] Train ML model
+            - [ ] Test ML model
+            - [ ] Deploy ML model
+            - [ ] Ingest into scam/fraud/mule centralise database
+        - [ ] Public shared approach to be implemented at third layer (Source no.3)
+            - [ ] Identify platforms where public can share scam information
+            - [ ] Prepare data entry platform
+            - [ ] Manual data entry for this info
+            - [ ] Ingest into scam/fraud/mule centralise database
+      #### Monitoring suspected accounts
+         - [ ] Validation process
+             - [ ] Flag confirmed/suspected 
+         - [ ] API sharing
+             - [ ] Internally
+             - [ ] Externally 
+      #### Actions        
+         - [ ] Notification alert
+            - [ ] Internally
+            - [ ] Externally 
+                
 ### System Architecture : TOGAF BDAT Approach
 
 | No. |Business Logic| Data Source | Application Use | Technology Use  |
