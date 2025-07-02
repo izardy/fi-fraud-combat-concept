@@ -9,18 +9,18 @@
 ### Propose Conceptual Solution
 - Based on the issues highlighted and performed gap analysis, a sandbox is proposed to demonstrate how the above might be able to counter.
   #### Establish a database which combined data of suspected mule/fraud/scam accounts from 3 different sources
-    - [ ] Rule based approach to be implemented at first layer (Source no.1)
+    - [ ] **Rule based approach** to be implemented at first layer (Source no.1)
         - [ ] Existing rule based approach (i.e changes of email, too many transaction in a day, student/housewife status but have continuous multiple transaction in a day)
         - [ ] SQL query suspected accounts based on the above logic/rule
         - [ ] Ingest into scam/fraud/mule centralise database
-    - [ ] ML based approach to be implemented at second layer (Source no.2)
+    - [ ] **ML based approach** to be implemented at second layer (Source no.2)
         - [ ] Obtain data
         - [ ] Build ML model
         - [ ] Train ML model
         - [ ] Test ML model
         - [ ] Deploy ML model
         - [ ] Ingest into scam/fraud/mule centralise database
-    - [ ] Public shared approach to be implemented at third layer (Source no.3)
+    - [ ] **Public shared approach** to be implemented at third layer (Source no.3)
         - [ ] Identify platforms where public can share scam information
         - [ ] Prepare data entry platform
         - [ ] Manual data entry for this info
