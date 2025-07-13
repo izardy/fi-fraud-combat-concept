@@ -10,7 +10,7 @@ cryptography==44.0.0
 decorator==5.1.1
 exceptiongroup==1.2.2
 executing==2.2.0
-Flask==3.1.0
+Flask==3.1.1
 Flask-Login==0.6.3
 flask-paginate==2024.4.12
 Flask-SocketIO==5.5.1
