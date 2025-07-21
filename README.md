@@ -66,7 +66,7 @@
      - [ ] The code will run and predict suspected fraud account using sample data as input
      - [ ] Data of the fraud account ingested into sqlite db via method3_public_contribution/instance/flaskr.sqlite (table name scammers)
   #### Test Rule Based 
-     - [ ] Based on dummy CIF and transaction data , we extract account information which  had changes in their email address 
+     - [ ] Based on dummy customer information files and transaction data , we extract account information which  had changes in their email address 
      - [ ] ```python rule-based.py```
      - [ ] The code will run and filter account based on the applied rule
      - [ ] Output data ingested into sqlite db via method3_public_contribution/instance/flaskr.sqlite (table name scammers)
