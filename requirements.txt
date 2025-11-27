@@ -31,7 +31,7 @@ pycparser==2.22
 Pygments==2.19.1
 python-dateutil==2.9.0.post0
 python-engineio==4.11.2
-python-socketio==5.12.1
+python-socketio==5.14.0
 pytz==2024.2
 requests==2.32.4
 simple-websocket==1.1.0
