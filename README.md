@@ -73,6 +73,6 @@
  
   ### Pull the Combined Data via API
     - [ ] User need to login into the Flask app before can use the API
-    - [ ] https://localhost:5000/api/scammers
+    - [x] https://localhost:5000/api/scammers
            
      
